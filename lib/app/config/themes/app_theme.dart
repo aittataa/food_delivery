@@ -18,8 +18,8 @@ class AppTheme {
   static ThemeData get themeData {
     return ThemeData(
       scaffoldBackgroundColor: backColor,
-      primaryColor: backColor,
-      splashColor: backColor,
+      primaryColor: transparentColor,
+      splashColor: transparentColor,
       appBarTheme: const AppBarTheme(
         elevation: 0,
         centerTitle: true,
