@@ -21,7 +21,7 @@ dev_dependencies:
 
 flutter_icons:
   image_path: "assets/app_icon_round.png"
-  android: "app_icon"
+  android: "app_icon_round"
   ios: true
   remove_alpha_ios: true
 
