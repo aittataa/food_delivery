@@ -14,9 +14,16 @@ dependencies:
 dev_dependencies: 
   flutter_lints: ^1.0.0
   #change_app_package_name: ^1.0.0
-  flutter_launcher_name: ^0.0.1
+  #flutter_launcher_name: ^0.0.1
+  flutter_launcher_icons: ^0.9.0
   flutter_test: 
     sdk: flutter
+
+flutter_icons:
+  image_path: "assets/app_icon.png"
+  android: "app_icon"
+  ios: true
+  remove_alpha_ios: true
 
 flutter_launcher_name:
   name: "Foodie"
@@ -24,4 +31,4 @@ flutter_launcher_name:
 flutter: 
   uses-material-design: true
   assets:
-
+    - assets/
