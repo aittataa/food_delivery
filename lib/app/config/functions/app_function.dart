@@ -6,8 +6,8 @@ class AppFunction {
   AppFunction._();
 
   static get configureDependencies {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: []);
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: []);
+    // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         systemNavigationBarColor: AppTheme.transparentColor,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/app/config/themes/app_theme.dart';
+import 'package:food_delivery/app/shared/splash.dart';
 import 'package:get/get.dart';
 
-import 'app/config/functions/app_function.dart';
-import 'app/routes/app_pages.dart';
+import 'app/config/messages/app_message.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  AppFunction.configureDependencies();
   runApp(const Foodie());
 }
 
@@ -16,9 +16,11 @@ class Foodie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+      title: AppMessage.appTitle,
+      theme: AppTheme.themeData,
+      // initialRoute: AppPages.INITIAL,
+      // getPages: AppPages.routes,
+      home: const Splash(),
     );
   }
 }

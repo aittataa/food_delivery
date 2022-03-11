@@ -2,7 +2,7 @@ class AppMessage {
   AppMessage._();
 
   /// TODO : App Data
-  static const String appTitle = "AIT TATA ABDERRAHIM";
+  static const String appTitle = "Foodie";
 
   /// TODO : App Icons
   static const String appIcon = "assets/app_icon.png";
