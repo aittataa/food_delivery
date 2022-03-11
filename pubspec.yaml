@@ -20,7 +20,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  image_path: "assets/app_icon.png"
+  image_path: "assets/app_icon_round.png"
   android: "app_icon"
   ios: true
   remove_alpha_ios: true
