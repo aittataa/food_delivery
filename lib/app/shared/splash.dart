@@ -13,7 +13,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: const Expanded(child: BouncePoint(size: 60)),
+      splash: const BouncePoint(size: 60),
       nextScreen: InitialView(),
       curve: AppConstant.curve,
       backgroundColor: AppTheme.primaryBackColor,
