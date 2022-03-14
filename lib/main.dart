@@ -20,7 +20,7 @@ class Foodie extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: AppMessage.appTitle,
       theme: AppTheme.themeData,
-      initialRoute: AppPages.INITIAL,
+      //initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       home: const Splash(),
     );
