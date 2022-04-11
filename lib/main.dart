@@ -17,7 +17,7 @@ class MoviesLand extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Application",
+      title: "Movies Land",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     );
