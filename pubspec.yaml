@@ -1,33 +1,35 @@
 name: movies_land
 version: 1.0.0+1
-description: Movies Land App.
+publish_to: none
+description: A new Flutter project.
 environment: 
   sdk: '>=2.15.0 <3.0.0'
 
 dependencies: 
+  cupertino_icons: 1.0.2
   get: 4.6.1
-  cupertino_icons: 1.0.4
-  video_player: 2.3.0
   intl: 0.17.0
+  video_player: 2.3.0
   url_launcher: 6.0.20
   flutter: 
     sdk: flutter
 
-dev_dependencies: 
-  flutter_test: 
+dev_dependencies:
+  #change_app_package_name: 1.0.0
+  #flutter_launcher_name: 0.0.1
+  flutter_launcher_icons: 0.9.0
+  flutter_test:
     sdk: flutter
 
-flutter_icons: 
-  image_path: assets/app_icon_round.png
-  android: app_icon_round
+flutter_icons:
+  image_path: "assets/app_icon_round.png"
+  android: "app_icon_round"
   ios: true
   remove_alpha_ios: true
 
-flutter_launcher_name: 
-  name: Movies Land
+flutter_launcher_name:
+  name: "Movies Land"
 
 flutter: 
-  assets: 
-    - assets/
   uses-material-design: true
 

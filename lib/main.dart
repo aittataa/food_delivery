@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movies_land/app/config/functions/app_function.dart';
-import 'package:movies_land/app/config/messages/app_message.dart';
-import 'package:movies_land/app/modules/initial/views/initial_view.dart';
 
+import 'app/config/functions/app_function.dart';
+import 'app/config/messages/app_message.dart';
+import 'app/modules/initial/views/initial_view.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {
