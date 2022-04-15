@@ -7,27 +7,27 @@ environment:
 dependencies: 
   cupertino_icons: 1.0.2
   get: 4.6.1
+  #firebase_core: 1.14.1
+  cloud_firestore: 3.1.12
+  #firebase_auth: 3.3.14
   flutter: 
     sdk: flutter
 
-dev_dependencies:
-  flutter_launcher_icons: 0.9.0
-  #flutter_launcher_name: 0.0.1
-  #change_app_package_name: 1.0.0
+dev_dependencies: 
   flutter_test:
     sdk: flutter
 
-flutter_icons:
-  image_path: "assets/app_icon_round.png"
-  android: "app_icon_round"
+flutter_icons: 
+  image_path: assets/app_icon_round.png
+  android: app_icon_round
   ios: true
   remove_alpha_ios: true
 
-flutter_launcher_name:
-  name: "Movies Land"
+flutter_launcher_name: 
+  name: Movies Land
 
 flutter: 
-  uses-material-design: true
-  assets:
+  assets: 
     - assets/
+  uses-material-design: true
 
