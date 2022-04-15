@@ -1,6 +1,6 @@
 # movies_land
 
-A new Flutter project.
+movies_land.
 
 ## Getting Started
 
