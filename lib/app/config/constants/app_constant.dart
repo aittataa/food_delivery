@@ -40,7 +40,7 @@ class AppConstant {
   );
 
   static LinearGradient mainGradient = LinearGradient(
-    colors: [AppTheme.mainColor_2, AppTheme.mainColor_1],
+    colors: [AppTheme.mainColor, AppTheme.mainColor],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );

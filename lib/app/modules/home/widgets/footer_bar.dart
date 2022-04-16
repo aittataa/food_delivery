@@ -4,24 +4,24 @@ import 'package:flutter/material.dart';
 import '../../../config/themes/app_theme.dart';
 
 class FooterBar extends StatelessWidget {
-  final int currentIndex;
+  final int index;
   final Function(int)? onTap;
 
   const FooterBar({
     Key? key,
-    required this.currentIndex,
+    this.index = 0,
     this.onTap,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       onTap: onTap,
-      currentIndex: currentIndex,
+      currentIndex: index,
       elevation: 1,
       type: BottomNavigationBarType.fixed,
       backgroundColor: AppTheme.primaryBackColor,
-      selectedItemColor: AppTheme.mainColor_1,
-      unselectedItemColor: AppTheme.primaryIconColor.withOpacity(.5),
+      selectedItemColor: AppTheme.mainColor,
+      unselectedItemColor: AppTheme.iconColor,
       selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
       showUnselectedLabels: false,
       items: [
@@ -32,13 +32,13 @@ class FooterBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           label: "Search",
-          icon: Icon(CupertinoIcons.layers_alt),
-          activeIcon: Icon(CupertinoIcons.layers_alt_fill),
+          icon: Icon(Icons.search),
+          activeIcon: Icon(Icons.search),
         ),
         BottomNavigationBarItem(
           label: "Categories",
-          icon: Icon(CupertinoIcons.chart_pie),
-          activeIcon: Icon(CupertinoIcons.chart_pie_fill),
+          icon: Icon(CupertinoIcons.layers_alt),
+          activeIcon: Icon(CupertinoIcons.layers_alt_fill),
         ),
         BottomNavigationBarItem(
           label: "Settings",
