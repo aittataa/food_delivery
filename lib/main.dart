@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movies_land/app/config/functions/app_function.dart';
 import 'package:movies_land/app/config/messages/app_message.dart';
-import 'package:movies_land/app/modules/home/views/home_view.dart';
-
-import 'app/routes/app_pages.dart';
+import 'package:movies_land/app/modules/initial/views/initial_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +20,9 @@ class MoviesLand extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppMessage.appTitle,
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-      home: HomeView(),
+      // initialRoute: AppPages.INITIAL,
+      // getPages: AppPages.routes,
+      home: InitialView(),
     );
   }
 }
