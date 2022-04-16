@@ -1,9 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movies_land/app/config/functions/app_function.dart';
-import 'package:movies_land/app/config/messages/app_message.dart';
-import 'package:movies_land/app/modules/initial/views/initial_view.dart';
+
+import 'app/config/functions/app_function.dart';
+import 'app/config/messages/app_message.dart';
+import 'app/modules/initial/views/initial_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,8 +21,6 @@ class MoviesLand extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppMessage.appTitle,
-      // initialRoute: AppPages.INITIAL,
-      // getPages: AppPages.routes,
       home: InitialView(),
     );
   }
