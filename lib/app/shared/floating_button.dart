@@ -7,13 +7,13 @@ import '../config/themes/app_theme.dart';
 class FloatingButton extends StatelessWidget {
   final bool visible;
   final IconData icon;
-  final Function() onPress;
+  final Function()? onPress;
 
   const FloatingButton({
     Key? key,
     this.visible = true,
     required this.icon,
-    required this.onPress,
+    this.onPress,
   }) : super(key: key);
 
   @override

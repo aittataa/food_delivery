@@ -1,20 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+import '../../../data/data_sources/remote/remote_data_sources.dart';
 
-  final count = 0.obs;
+class HomeController extends GetxController {
+  final RemoteDataSources _remoteData = Get.put(RemoteDataSources());
+
   @override
   void onInit() {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Stream<QuerySnapshot> get getMovies {
+    final Stream<QuerySnapshot> response = _remoteData.getMovies;
+    return response;
   }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

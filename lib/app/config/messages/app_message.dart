@@ -12,6 +12,5 @@ class AppMessage {
   static const String labelSearch = "Search";
   static const String labelCategories = "Categories";
   static const String labelSettings = "Settings";
-
-  /// TODO : Screen Texts
+  static const String labelNoDataFound = "No Data Found";
 }

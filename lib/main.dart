@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movies_land/app/config/themes/app_theme.dart';
-import 'package:movies_land/app/modules/splash/views/splash_view.dart';
+import 'package:movies_land/app/modules/initial/views/initial_view.dart';
 
 import 'app/config/functions/app_function.dart';
 import 'app/config/messages/app_message.dart';
@@ -23,7 +23,7 @@ class MoviesLand extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: AppMessage.appTitle,
       theme: AppTheme.light,
-      home: SplashView(),
+      home: InitialView(),
     );
   }
 }
