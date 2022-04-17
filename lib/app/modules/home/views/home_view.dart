@@ -9,6 +9,7 @@ import 'package:movies_land/app/shared/floating_button.dart';
 import 'package:movies_land/app/shared/header_bar.dart';
 
 import '../../../config/messages/app_message.dart';
+import '../../../data/models/movies.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -36,17 +37,6 @@ class _HomeViewState extends State<HomeView> {
             child: StreamBuilder<QuerySnapshot>(
               stream: stream,
               builder: (_, snapshot) {
-                // if (snapshot.connectionState == ConnectionState.waiting) {
-                //   return BouncePoint();
-                // } else if (snapshot.hasError) {
-                //   return EmptyBox(label: snapshot.error.toString());
-                // } else if (snapshot.hasData) {
-                //   final Map<String, dynamic> data = snapshot.data!.docs.first.data() as Map<String, dynamic>;
-                //   print(data);
-                //   return EmptyBox(label: data.length.toString());
-                // } else {
-                //   return EmptyBox(label: snapshot.error.toString());
-                // }
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
                     return BouncePoint();
@@ -54,11 +44,23 @@ class _HomeViewState extends State<HomeView> {
                     return EmptyBox(label: snapshot.error.toString());
                   case ConnectionState.active:
                     if (snapshot.hasData) {
-                      return SizedBox();
+                      //final Map<String, dynamic> data = snapshot.data!.docs.first.data() as Map<String, dynamic>
+                      //final List<Movie> movies = moviesFromJson(data);
+                      //print(data);
+                      return PageView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (_, i) {
+                          final Map<String, dynamic> data = snapshot.data!.docs[i].data() as Map<String, dynamic>;
+                          final Movies movie = Movies.fromMap(data);
+                          // return EmptyBox(label: "${data}");
+                          // return EmptyBox(label: "${data['name']}");
+                          return EmptyBox(label: "${movie.id}");
+                        },
+                      );
                     }
                     return EmptyBox();
                   case ConnectionState.done:
-                    return EmptyBox(label: snapshot.data!.docs.last.data().toString());
+                    return EmptyBox(label: "Done");
                   default:
                     return const SizedBox();
                 }

@@ -1,6 +1,12 @@
-class Movie {
+import 'dart:convert';
+
+List<Movies> moviesFromJson(String str) {
+  return List<Movies>.from(jsonDecode(str).map((x) => Movies.fromMap(x)));
+}
+
+class Movies {
   late String? id;
-  late String? title;
+  late String? name;
   late String? description;
   late String? photo;
   late String? type;
@@ -8,9 +14,9 @@ class Movie {
   late List<String> categories;
   late List<String> servers;
 
-  Movie({
+  Movies({
     this.id,
-    this.title,
+    this.name,
     this.description,
     this.photo,
     this.type,
@@ -18,10 +24,10 @@ class Movie {
     this.categories = const [],
     this.servers = const [],
   });
-  factory Movie.fromMap(Map<String, dynamic> data) {
-    return Movie(
+  factory Movies.fromMap(Map<String, dynamic> data) {
+    return Movies(
       id: data["id"],
-      title: data["title"],
+      name: data["name"],
       description: data["description"],
       photo: data["photo"],
       type: data["type"],
@@ -34,7 +40,7 @@ class Movie {
   Map<String, dynamic> toMap() {
     return {
       "id": id,
-      "title": title,
+      "name": name,
       "description": description,
       "photo": photo,
       "type": type,
