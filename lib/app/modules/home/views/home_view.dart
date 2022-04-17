@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies_land/app/shared/header_bar.dart';
 
 import '../../../config/messages/app_message.dart';
-import '../../../shared/floating_button.dart';
 
 class HomeView extends StatelessWidget {
   @override
@@ -11,11 +10,21 @@ class HomeView extends StatelessWidget {
       body: Stack(
         children: [
           HeaderBar(title: AppMessage.appTitle),
+          SafeArea(
+            child: ListView(
+              children: [
+                ListTile(),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 50,
+                  itemBuilder: (_, i) {
+                    return Text("$i");
+                  },
+                ),
+              ],
+            ),
+          ),
         ],
-      ),
-      floatingActionButton: FloatingButton(
-        icon: Icons.search,
-        onPress: () async {},
       ),
     );
   }

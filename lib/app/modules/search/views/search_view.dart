@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/messages/app_message.dart';
-import '../../../shared/floating_button.dart';
 import '../../../shared/header_bar.dart';
 
 class SearchView extends StatelessWidget {
@@ -10,12 +9,8 @@ class SearchView extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          HeaderBar(title: AppMessage.appTitle),
+          HeaderBar(title: AppMessage.labelSearch),
         ],
-      ),
-      floatingActionButton: FloatingButton(
-        icon: Icons.search,
-        onPress: () async {},
       ),
     );
   }

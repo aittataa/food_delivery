@@ -24,7 +24,7 @@ class HeaderBar extends StatelessWidget {
         ),
         child: ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: IconClick(icon: CupertinoIcons.back),
+          leading: IconClick(icon: Icons.search),
           title: Text(
             title,
             textAlign: TextAlign.center,
