@@ -7,21 +7,16 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
           HeaderBar(title: AppMessage.appTitle),
-          SafeArea(
-            child: ListView(
-              children: [
-                ListTile(),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 50,
-                  itemBuilder: (_, i) {
-                    return Text("$i");
-                  },
-                ),
-              ],
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: 50,
+              itemBuilder: (_, i) {
+                return Text("$i");
+              },
             ),
           ),
         ],
