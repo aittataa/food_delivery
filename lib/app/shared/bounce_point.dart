@@ -20,7 +20,7 @@ class BouncePoint extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (state) {
       case true:
-        return SpinKitThreeBounce(
+        return SpinKitSquareCircle(
           size: size,
           color: color,
           duration: AppConstant.durationSplash,
@@ -32,7 +32,7 @@ class BouncePoint extends StatelessWidget {
           duration: AppConstant.durationSplash,
         );
       default:
-        return SpinKitSquareCircle(
+        return SpinKitThreeBounce(
           size: size,
           color: color,
           duration: AppConstant.durationSplash,

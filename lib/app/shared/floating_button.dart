@@ -21,12 +21,14 @@ class FloatingButton extends StatelessWidget {
     return SpeedDial(
       onPress: onPress,
       visible: visible,
+      buttonSize: const Size(50, 50),
       backgroundColor: AppTheme.transparentColor,
       activeForegroundColor: AppTheme.transparentColor,
       activeBackgroundColor: AppTheme.transparentColor,
       foregroundColor: AppTheme.transparentColor,
       overlayColor: AppTheme.transparentColor,
       gradient: AppConstant.mainGradient,
+      gradientBoxShape: BoxShape.circle,
       elevation: 1,
       overlayOpacity: 0,
       curve: AppConstant.curve,
@@ -42,10 +44,6 @@ class FloatingButton extends StatelessWidget {
           color: AppTheme.primaryIconColor,
         ),
       ),
-      // child: Icon(
-      //   CupertinoIcons.plus_app,
-      //   color: AppTheme.primaryIconColor,
-      // ),
     );
   }
 }

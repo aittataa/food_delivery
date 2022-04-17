@@ -43,8 +43,8 @@ class AppFunction {
         systemNavigationBarIconBrightness: Brightness.dark,
         systemNavigationBarContrastEnforced: true,
         statusBarColor: AppTheme.transparentColor,
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
         systemStatusBarContrastEnforced: true,
       ),
     );

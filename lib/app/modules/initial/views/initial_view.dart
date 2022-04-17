@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_land/app/shared/flexible_space.dart';
+import 'package:movies_land/app/modules/categories/views/categories_view.dart';
+import 'package:movies_land/app/modules/home/views/home_view.dart';
+import 'package:movies_land/app/modules/search/views/search_view.dart';
+import 'package:movies_land/app/modules/settings/views/settings_view.dart';
 
 import '../../home/widgets/footer_bar.dart';
 
@@ -22,14 +25,20 @@ class _InitialViewState extends State<InitialView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: FlexibleSpace(),
+      body: PageView(
+        controller: _controller,
+        children: [
+          HomeView(),
+          SearchView(),
+          CategoriesView(),
+          SettingsView(),
+        ],
       ),
       bottomNavigationBar: FooterBar(
         index: _index,
         onTap: (index) {
           setState(() => {_index = index});
-          //_controller.jumpToPage(_index);
+          _controller.jumpToPage(_index);
         },
       ),
     );
