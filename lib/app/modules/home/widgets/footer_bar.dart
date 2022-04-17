@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_land/app/config/messages/app_message.dart';
 
 import '../../../config/themes/app_theme.dart';
 
@@ -26,22 +27,22 @@ class FooterBar extends StatelessWidget {
       showUnselectedLabels: false,
       items: [
         BottomNavigationBarItem(
-          label: "Home",
+          label: AppMessage.labelHome,
           icon: Icon(CupertinoIcons.house_alt),
           activeIcon: Icon(CupertinoIcons.house_alt_fill),
         ),
         BottomNavigationBarItem(
-          label: "Search",
+          label: AppMessage.labelSearch,
           icon: Icon(Icons.search),
           activeIcon: Icon(Icons.search),
         ),
         BottomNavigationBarItem(
-          label: "Categories",
+          label: AppMessage.labelCategories,
           icon: Icon(CupertinoIcons.layers_alt),
           activeIcon: Icon(CupertinoIcons.layers_alt_fill),
         ),
         BottomNavigationBarItem(
-          label: "Settings",
+          label: AppMessage.labelSettings,
           icon: Icon(CupertinoIcons.gear),
           activeIcon: Icon(CupertinoIcons.gear_solid),
         ),

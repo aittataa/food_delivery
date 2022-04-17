@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_land/app/modules/categories/views/categories_view.dart';
 import 'package:movies_land/app/modules/home/views/home_view.dart';

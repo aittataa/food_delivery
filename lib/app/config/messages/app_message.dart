@@ -8,10 +8,10 @@ class AppMessage {
 
   /// TODO : App Texts
   static const String appTitle = "Movies Land";
-  static const String label_1 = "";
-  static const String label_2 = "";
-  static const String label_3 = "";
-  static const String label_4 = "";
+  static const String labelHome = "Home";
+  static const String labelSearch = "Search";
+  static const String labelCategories = "Categories";
+  static const String labelSettings = "Settings";
 
   /// TODO : Screen Texts
 }
