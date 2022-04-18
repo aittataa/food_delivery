@@ -28,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
       floatingActionButton: FloatingButton(
         icon: CupertinoIcons.refresh,
         onPress: () {
-          setState(() => {stream = controller.getMovies});
+          //setState(() => {stream = controller.getMovies});
         },
       ),
       body: ListView(
@@ -79,21 +79,18 @@ class MovieShape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.rotate(
-      angle: 045,
-      child: Container(
-        margin: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(25),
-          boxShadow: [AppConstant.boxShadow],
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage("${movie.photo}"),
-          ),
+    return Container(
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.red,
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [AppConstant.boxShadow],
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage("${movie.photo}"),
         ),
-        // child: EmptyBox(label: "${movie.id}"),
       ),
+      // child: EmptyBox(label: "${movie.id}"),
     );
   }
 }
