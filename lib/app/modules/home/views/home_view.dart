@@ -46,20 +46,16 @@ class _HomeViewState extends State<HomeView> {
                     return EmptyBox(label: snapshot.error.toString());
                   case ConnectionState.active:
                     if (snapshot.hasData) {
-                      return Container(
-                        color: Colors.blue,
-                        padding: const EdgeInsets.all(10),
-                        child: PageView.builder(
-                          controller: PageController(viewportFraction: .75, initialPage: 0),
-                          itemCount: 10,
-                          //itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (_, i) {
-                            final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
-                            final Movies movie = Movies.fromMap(data);
-                            //return EmptyBox(label: "${movie.id} $i");
-                            return MovieShape(movie: movie);
-                          },
-                        ),
+                      return PageView.builder(
+                        controller: PageController(viewportFraction: .75, initialPage: 0),
+                        itemCount: 10,
+                        //itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (_, i) {
+                          final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                          final Movies movie = Movies.fromMap(data);
+                          //return EmptyBox(label: "${movie.id} $i");
+                          return MovieShape(movie: movie);
+                        },
                       );
                     }
                     return EmptyBox();
@@ -83,11 +79,21 @@ class MovieShape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.red,
+    return Transform.rotate(
+      angle: 045,
+      child: Container(
+        margin: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: [AppConstant.boxShadow],
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage("${movie.photo}"),
+          ),
+        ),
+        // child: EmptyBox(label: "${movie.id}"),
       ),
-      child: EmptyBox(label: "${movie.id}"),
     );
   }
 }
