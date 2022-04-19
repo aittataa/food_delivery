@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/categories/bindings/categories_binding.dart';
 import '../modules/categories/views/categories_view.dart';
+import '../modules/details/bindings/details_binding.dart';
+import '../modules/details/views/details_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/search/bindings/search_binding.dart';
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.SETTINGS,
       page: () => SettingsView(),
       binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAILS,
+      page: () => DetailsView(),
+      binding: DetailsBinding(),
     ),
   ];
 }
