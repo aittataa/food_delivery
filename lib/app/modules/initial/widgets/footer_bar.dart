@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:movies_land/app/config/messages/app_message.dart';
 
 import '../../../config/themes/app_theme.dart';
@@ -28,23 +29,25 @@ class FooterBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           label: AppMessage.labelHome,
-          icon: Icon(CupertinoIcons.house_alt),
-          activeIcon: Icon(CupertinoIcons.house_alt_fill),
+          icon: Icon(IconlyBroken.home),
+          activeIcon: Icon(IconlyBold.home),
+          //icon: Icon(CupertinoIcons.house_alt),
+          //activeIcon: Icon(CupertinoIcons.house_alt_fill),
         ),
         BottomNavigationBarItem(
           label: AppMessage.labelSearch,
-          icon: Icon(Icons.search),
-          activeIcon: Icon(Icons.search),
+          icon: Icon(IconlyBroken.search),
+          activeIcon: Icon(IconlyBold.search),
         ),
         BottomNavigationBarItem(
           label: AppMessage.labelCategories,
-          icon: Icon(CupertinoIcons.layers_alt),
-          activeIcon: Icon(CupertinoIcons.layers_alt_fill),
+          icon: Icon(IconlyBroken.category),
+          activeIcon: Icon(IconlyBold.category),
         ),
         BottomNavigationBarItem(
           label: AppMessage.labelSettings,
-          icon: Icon(CupertinoIcons.gear),
-          activeIcon: Icon(CupertinoIcons.gear_solid),
+          icon: Icon(IconlyBroken.setting),
+          activeIcon: Icon(IconlyBold.setting),
         ),
       ],
     );

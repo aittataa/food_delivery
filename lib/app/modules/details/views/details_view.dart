@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
+import '../../../config/messages/app_message.dart';
+import '../../../shared/header_bar.dart';
 
-import '../controllers/details_controller.dart';
-
-class DetailsView extends GetView<DetailsController> {
+class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('DetailsView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'DetailsView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Stack(
+        children: [
+          HeaderBar(title: AppMessage.labelSearch),
+        ],
       ),
     );
   }

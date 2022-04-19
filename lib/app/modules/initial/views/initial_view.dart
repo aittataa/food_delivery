@@ -5,7 +5,7 @@ import 'package:movies_land/app/modules/home/views/home_view.dart';
 import 'package:movies_land/app/modules/search/views/search_view.dart';
 import 'package:movies_land/app/modules/settings/views/settings_view.dart';
 
-import '../../home/widgets/footer_bar.dart';
+import '../widgets/footer_bar.dart';
 
 class InitialView extends StatefulWidget {
   const InitialView({Key? key}) : super(key: key);
