@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 
 import '../config/constants/app_constant.dart';
 import '../config/themes/app_theme.dart';
@@ -24,7 +25,7 @@ class HeaderBar extends StatelessWidget {
         ),
         child: ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: IconClick(icon: Icons.search),
+          leading: IconClick(icon: IconlyLight.search),
           title: Text(
             title,
             textAlign: TextAlign.center,
@@ -33,7 +34,7 @@ class HeaderBar extends StatelessWidget {
               fontWeight: FontWeight.w900,
             ),
           ),
-          trailing: IconClick(icon: CupertinoIcons.heart_fill),
+          trailing: IconClick(icon: IconlyBold.heart),
         ),
       ),
     );
