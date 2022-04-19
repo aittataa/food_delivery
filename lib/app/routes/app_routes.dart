@@ -7,6 +7,7 @@ abstract class Routes {
   static const CATEGORIES = _Paths.CATEGORIES;
   static const SEARCH = _Paths.SEARCH;
   static const SETTINGS = _Paths.SETTINGS;
+  static const DETAILS = _Paths.DETAILS;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const CATEGORIES = '/categories';
   static const SEARCH = '/search';
   static const SETTINGS = '/settings';
+  static const DETAILS = '/details';
 }
