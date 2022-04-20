@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:movies_land/app/config/messages/app_message.dart';
@@ -32,8 +31,6 @@ class FooterBar extends StatelessWidget {
           label: AppMessage.labelHome,
           icon: Icon(IconlyBroken.home),
           activeIcon: Icon(IconlyBold.home),
-          //icon: Icon(CupertinoIcons.house_alt),
-          //activeIcon: Icon(CupertinoIcons.house_alt_fill),
         ),
         BottomNavigationBarItem(
           label: AppMessage.labelSearch,

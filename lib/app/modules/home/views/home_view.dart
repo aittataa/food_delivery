@@ -45,8 +45,10 @@ class _HomeViewState extends State<HomeView> {
                   case ConnectionState.none:
                     return EmptyBox(label: snapshot.error.toString());
                   case ConnectionState.active:
-                    if (snapshot.hasData) {
+                    if (snapshot.hasError) {
+                    } else if (snapshot.hasData) {
                       return PageView.builder(
+                        padEnds: false,
                         controller: PageController(viewportFraction: .75, initialPage: 0),
                         itemCount: 10,
                         //itemCount: snapshot.data!.docs.length,
