@@ -46,3 +46,4 @@ app.*.map.json
 /android/app/release
 /details.txt
 /android/app/google-services.json
+/lib/app/config/ignores/app_ignore.dart
