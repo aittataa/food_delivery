@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../ignores/app_ignore.dart';
 import '../themes/app_theme.dart';
 
 enum QuestionType { regular, single, multiple, date }
@@ -49,5 +51,12 @@ class AppConstant {
     color: AppTheme.shadowColor.withOpacity(.1),
     blurRadius: 10,
     spreadRadius: .1,
+  );
+
+  static FirebaseOptions options = FirebaseOptions(
+    apiKey: AppIgnore.apiKey,
+    appId: AppIgnore.appId,
+    messagingSenderId: AppIgnore.messagingSenderId,
+    projectId: AppIgnore.projectId,
   );
 }
