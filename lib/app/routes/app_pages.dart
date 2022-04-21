@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/admin/bindings/admin_binding.dart';
+import '../modules/admin/views/admin_view.dart';
 import '../modules/categories/bindings/categories_binding.dart';
 import '../modules/categories/views/categories_view.dart';
 import '../modules/details/bindings/details_binding.dart';
@@ -20,19 +22,24 @@ class AppPages {
 
   static final routes = [
     GetPage(
+      name: _Paths.ADMIN,
+      page: () => AdminView(),
+      binding: AdminBinding(),
+    ),
+    GetPage(
       name: _Paths.HOME,
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.CATEGORIES,
-      page: () => CategoriesView(),
-      binding: CategoriesBinding(),
-    ),
-    GetPage(
       name: _Paths.SEARCH,
       page: () => SearchView(),
       binding: SearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.CATEGORIES,
+      page: () => CategoriesView(),
+      binding: CategoriesBinding(),
     ),
     GetPage(
       name: _Paths.SETTINGS,
