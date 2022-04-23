@@ -2,8 +2,9 @@ class AppMessage {
   AppMessage._();
 
   /// TODO : App Texts
-  static const String appIcon = "assets/images/app_icon.png";
-  static const String appIconRound = "assets/images/app_icon_round.png";
+  static const String appLogo = "assets/app_logo.png";
+  static const String appIcon = "assets/app_icon.png";
+  static const String appIconRound = "assets/app_icon_round.png";
   static const String obscuringCharacter = "●";
 
   /// TODO : App Texts
