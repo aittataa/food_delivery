@@ -10,10 +10,8 @@ class AppTheme {
 
   /// TODO : Survey Color
   static const Color redColor = const Color(0xfffd0000);
-  // static const Color redColor = const Color(0xffC33C3C);
   static const Color blueColor = const Color(0xff1492E6);
   static const Color greenColor = const Color(0xff08ff00);
-  // static const Color greenColor = const Color(0xffA1C158);
   static const Color yellowColor = const Color(0xfff3a112);
   static const Color greyColor = const Color(0xffA1A1A1);
 

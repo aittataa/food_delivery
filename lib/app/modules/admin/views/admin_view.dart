@@ -3,6 +3,6 @@ import 'package:flutter/material.dart';
 class AdminView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Material();
   }
 }

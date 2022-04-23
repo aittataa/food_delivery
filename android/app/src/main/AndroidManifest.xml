@@ -3,7 +3,7 @@
    <application
         android:label="Movies Land"
         android:name="${applicationName}"
-        android:icon="@mipmap/app_icon_round">
+        android:icon="@mipmap/app_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
