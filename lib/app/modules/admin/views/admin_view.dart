@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:movies_land/app/config/functions/app_function.dart';
 
 import '../../../config/messages/app_message.dart';
 import '../../../config/themes/app_theme.dart';
@@ -23,43 +24,66 @@ class _AdminViewState extends State<AdminView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                tileColor: AppTheme.appBarColor,
-                leading: Image.asset(
-                  AppMessage.appIconRound,
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+                decoration: BoxDecoration(
+                  color: AppTheme.appBarColor,
                 ),
-                title: Text(
-                  AppMessage.appTitle,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: AppTheme.primaryTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  // contentPadding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+                  // tileColor: AppTheme.appBarColor,
+                  leading: Image.asset(AppMessage.appIconRound),
+                  title: Text(
+                    AppMessage.appTitle,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppTheme.primaryTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
                   ),
-                ),
-                trailing: Image.asset(
-                  AppMessage.appLogo,
+                  trailing: Image.asset(
+                    AppMessage.appLogo,
+                  ),
                 ),
               ),
               Expanded(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(
+                    Container(
                       width: 300,
-                      //height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppTheme.appBarColor,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Expanded(flex: 1, child: SizedBox()),
                           DashButton(icon: IconlyBold.category, title: "Dashboard", onTap: () {}),
                           DashButton(icon: IconlyBold.ticket, title: "Movies", onTap: () {}),
                           DashButton(icon: IconlyBold.setting, title: "Settings", onTap: () {}),
+                          Expanded(flex: 3, child: SizedBox()),
                         ],
                       ),
                     ),
-                    Expanded(child: Container(color: Colors.red, child: Icon(IconlyBold.message))),
+                    Expanded(
+                      child: GridView.builder(
+                        padding: EdgeInsets.all(25),
+                        scrollDirection: Axis.vertical,
+                        gridDelegate: AppFunction.gridDelegate(
+                          crossAxisCount: 4,
+                          spacing: 25,
+                          childAspectRatio: 0.75,
+                        ),
+                        itemCount: 10,
+                        itemBuilder: (_, i) {
+                          return Container(color: Colors.red, child: Center(child: Text("$i")));
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -107,11 +131,9 @@ class _DashButtonState extends State<DashButton> {
       child: ListTile(
         onTap: onTap,
         tileColor: _backColor,
+        contentPadding: EdgeInsets.all(10),
         leading: Icon(icon, color: _iconColor),
-        title: Text(
-          title,
-          style: TextStyle(color: _textColor),
-        ),
+        title: Text(title, style: TextStyle(color: _textColor)),
       ),
     );
   }

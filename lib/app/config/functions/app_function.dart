@@ -33,6 +33,15 @@ class AppFunction {
     );
   }
 
+  static gridDelegate({int crossAxisCount = 1, double spacing = 10, double childAspectRatio = 1}) {
+    return SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: crossAxisCount,
+      mainAxisSpacing: spacing,
+      crossAxisSpacing: spacing,
+      childAspectRatio: childAspectRatio,
+    );
+  }
+
   static get configureDependencies {
     //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     //SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: [SystemUiOverlay.top]);
