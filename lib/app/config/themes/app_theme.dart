@@ -20,6 +20,8 @@ class AppTheme {
 
   /// TODO : Back Colors
   static const Color backColor = const Color(0xFFF0F0F0);
+  static const Color hoverColor = const Color(0xFF9A9A9A);
+
   static const Color primaryBackColor = const Color(0xFFFFFFFF);
   static const Color secondaryBackColor = const Color(0xFF000000);
   static const Color appBarColor = const Color(0xFF404040);
@@ -36,8 +38,8 @@ class AppTheme {
 
   static ThemeData get light {
     return ThemeData(
-      scaffoldBackgroundColor: backColor,
-      primaryColor: backColor,
+      scaffoldBackgroundColor: redColor,
+      primaryColor: transparentColor,
       splashColor: transparentColor,
       appBarTheme: AppBarTheme(
         elevation: 1,
