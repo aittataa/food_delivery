@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:movies_land/app/config/functions/app_function.dart';
@@ -12,9 +11,6 @@ class AdminView extends StatefulWidget {
 }
 
 class _AdminViewState extends State<AdminView> {
-  late Color _backColor = AppTheme.transparentColor;
-  late Color _textColor = AppTheme.textColor;
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -31,8 +27,6 @@ class _AdminViewState extends State<AdminView> {
                 ),
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
-                  // contentPadding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-                  // tileColor: AppTheme.appBarColor,
                   leading: Image.asset(AppMessage.appIconRound),
                   title: Text(
                     AppMessage.appTitle,
