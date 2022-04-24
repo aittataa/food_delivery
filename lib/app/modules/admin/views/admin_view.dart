@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:movies_land/app/config/constants/app_constant.dart';
 import 'package:movies_land/app/config/functions/app_function.dart';
 
 import '../../../config/messages/app_message.dart';
@@ -65,16 +66,25 @@ class _AdminViewState extends State<AdminView> {
                     ),
                     Expanded(
                       child: GridView.builder(
-                        padding: EdgeInsets.all(25),
+                        padding: EdgeInsets.all(30),
                         scrollDirection: Axis.vertical,
                         gridDelegate: AppFunction.gridDelegate(
                           crossAxisCount: 4,
-                          spacing: 25,
+                          spacing: 30,
                           childAspectRatio: 0.75,
                         ),
                         itemCount: 10,
                         itemBuilder: (_, i) {
-                          return Container(color: Colors.red, child: Center(child: Text("$i")));
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [AppConstant.boxShadow],
+                            ),
+                            child: Center(
+                              child: Text("$i"),
+                            ),
+                          );
                         },
                       ),
                     ),

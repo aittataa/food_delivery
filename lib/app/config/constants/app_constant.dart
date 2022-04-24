@@ -48,7 +48,7 @@ class AppConstant {
   );
 
   static BoxShadow boxShadow = BoxShadow(
-    color: AppTheme.shadowColor.withOpacity(.1),
+    color: AppTheme.shadowColor.withOpacity(.25),
     blurRadius: 10,
     spreadRadius: .1,
   );
