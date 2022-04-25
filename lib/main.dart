@@ -9,12 +9,11 @@ import 'app/config/functions/app_function.dart';
 import 'app/config/messages/app_message.dart';
 import 'app/config/themes/app_theme.dart';
 import 'app/modules/admin/views/admin_view.dart';
-import 'app/modules/admin/widgets/splash.dart';
 import 'app/modules/splash/views/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setUrlStrategy(PathUrlStrategy());
+  if (kIsWeb) setUrlStrategy(PathUrlStrategy());
   AppFunction.configureDependencies;
   await Firebase.initializeApp(options: AppConstant.options);
   runApp(MoviesLand());
@@ -32,7 +31,7 @@ class MoviesLand extends StatelessWidget {
       home: Builder(builder: (context) {
         if (kIsWeb) {
           return AdminView();
-          return Splash();
+          //return Splash();
         }
         return SplashView();
       }),

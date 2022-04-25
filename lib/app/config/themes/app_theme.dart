@@ -38,7 +38,7 @@ class AppTheme {
 
   static ThemeData get light {
     return ThemeData(
-      scaffoldBackgroundColor: redColor,
+      scaffoldBackgroundColor: backColor,
       primaryColor: transparentColor,
       splashColor: transparentColor,
       appBarTheme: AppBarTheme(
