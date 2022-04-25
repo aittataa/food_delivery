@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movies_land/app/config/constants/app_constant.dart';
@@ -6,6 +7,9 @@ import 'package:movies_land/app/modules/admin/controllers/admin_controller.dart'
 
 import '../../../config/messages/app_message.dart';
 import '../../../config/themes/app_theme.dart';
+import '../../../data/models/movies.dart';
+import '../../../shared/bounce_point.dart';
+import '../../../shared/empty_box.dart';
 
 class AdminView extends StatefulWidget {
   const AdminView({Key? key}) : super(key: key);
@@ -15,23 +19,23 @@ class AdminView extends StatefulWidget {
 
 class _AdminViewState extends State<AdminView> {
   final AdminController controller = Get.put(AdminController());
+  late Stream<QuerySnapshot> _stream = controller.getMovies;
   @override
   Widget build(BuildContext context) {
     return Material(
       color: AppTheme.backColor,
       child: LayoutBuilder(builder: (context, constraints) {
-        late int itemCount = 5;
-        print(constraints.constrainWidth());
+        late int crossAxisCount = 5;
         if (constraints.constrainWidth() < 600) {
-          itemCount = 1;
+          crossAxisCount = 1;
         } else if (constraints.constrainWidth() < 800) {
-          itemCount = 2;
+          crossAxisCount = 2;
         } else if (constraints.constrainWidth() < 1000) {
-          itemCount = 3;
+          crossAxisCount = 3;
         } else if (constraints.constrainWidth() < 1200) {
-          itemCount = 4;
+          crossAxisCount = 4;
         } else if (constraints.constrainWidth() < 1400) {
-          itemCount = 5;
+          crossAxisCount = 5;
         }
 
         return Container(
@@ -41,7 +45,7 @@ class _AdminViewState extends State<AdminView> {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
                 decoration: BoxDecoration(
-                  color: AppTheme.appBarColor,
+                  color: AppTheme.secondaryBackColor,
                 ),
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
@@ -61,33 +65,63 @@ class _AdminViewState extends State<AdminView> {
                 ),
               ),
               Expanded(
-                child: GridView.builder(
-                  padding: EdgeInsets.all(50),
-                  scrollDirection: Axis.vertical,
-                  gridDelegate: AppFunction.gridDelegate(
-                    crossAxisCount: itemCount,
-                    spacing: 50,
-                    childAspectRatio: 0.75,
-                  ),
-                  itemCount: 10,
-                  itemBuilder: (_, i) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: [AppConstant.boxShadow],
-                      ),
-                      child: Center(
-                        child: Text("$i"),
-                      ),
-                    );
-                  },
-                ),
+                child: StreamBuilder<QuerySnapshot>(
+                    stream: _stream,
+                    builder: (context, snapshot) {
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.waiting:
+                          return BouncePoint();
+                        case ConnectionState.none:
+                          return EmptyBox(label: snapshot.error.toString());
+                        case ConnectionState.active:
+                          if (snapshot.hasData) {
+                            final int itemCount = snapshot.data!.docs.length;
+                            return GridView.builder(
+                              padding: EdgeInsets.all(50),
+                              scrollDirection: Axis.vertical,
+                              gridDelegate: AppFunction.gridDelegate(crossAxisCount: crossAxisCount, spacing: 50, childAspectRatio: 0.75),
+                              itemCount: itemCount,
+                              itemBuilder: (_, i) {
+                                final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                                final Movies movie = Movies.fromMap(data);
+                                return MovieShape(movie: movie);
+                              },
+                            );
+                          }
+                          return EmptyBox();
+                        case ConnectionState.done:
+                          return EmptyBox(label: "Done");
+                        default:
+                          return const SizedBox();
+                      }
+                    }),
               ),
             ],
           ),
         );
       }),
+    );
+  }
+}
+
+class MovieShape extends StatelessWidget {
+  final Movies movie;
+  const MovieShape({Key? key, required this.movie}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.red,
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [AppConstant.boxShadow],
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage("${movie.photo}"),
+        ),
+      ),
+      // child: EmptyBox(label: "${movie.id}"),
     );
   }
 }

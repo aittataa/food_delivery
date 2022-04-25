@@ -21,10 +21,9 @@ class AppTheme {
   /// TODO : Back Colors
   static const Color backColor = const Color(0xFFF0F0F0);
   static const Color hoverColor = const Color(0xFF9A9A9A);
-
   static const Color primaryBackColor = const Color(0xFFFFFFFF);
-  static const Color secondaryBackColor = const Color(0xFF000000);
-  static const Color appBarColor = const Color(0xFF404040);
+  static const Color secondaryBackColor = const Color(0xFF404040);
+  //static const Color secondaryBackColor = const Color(0xFF000000);
 
   /// TODO : Text Colors
   static const Color textColor = const Color(0xFFA0A0A0);
