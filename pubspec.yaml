@@ -17,14 +17,15 @@ dependencies:
   flutter: 
     sdk: flutter
 
-dev_dependencies: 
+dev_dependencies:
+  flutter_launcher_icons: 0.9.0
   url_strategy: 0.2.0
   flutter_test: 
     sdk: flutter
 
 flutter_icons: 
-  image_path: assets/app_icon.png
-  android: app_icon
+  image_path: assets/app_icon_round.png
+  android: app_icon_round
   ios: true
   remove_alpha_ios: true
 
