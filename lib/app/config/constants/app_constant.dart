@@ -27,6 +27,7 @@ class AppConstant {
 
   /// TODO : Durations
   static const Duration duration = Duration(milliseconds: 1500);
+  static const Duration durationAnimation = Duration(milliseconds: 750);
   static const Duration durationCheck = Duration(milliseconds: 500);
   static const Duration durationSplash = Duration(milliseconds: 1500);
 
