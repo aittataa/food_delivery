@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -113,12 +114,21 @@ class MovieShape extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.red,
+        color: AppTheme.primaryBackColor,
         borderRadius: BorderRadius.circular(25),
         boxShadow: [AppConstant.boxShadow],
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage("${movie.photo}"),
+        // image: DecorationImage(
+        //   fit: BoxFit.cover,
+        //   image: CachedNetworkImageProvider("${movie.photo}"),
+        // ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: CachedNetworkImage(
+          imageUrl: "${movie.photo}",
+          // fit: BoxFit.cover,
+          placeholder: (context, url) => BouncePoint(state: true, size: 25),
+          errorWidget: (context, url, error) => Icon(Icons.error),
         ),
       ),
       // child: EmptyBox(label: "${movie.id}"),
@@ -126,7 +136,7 @@ class MovieShape extends StatelessWidget {
   }
 }
 
-class DashButton extends StatefulWidget {
+/*class DashButton extends StatefulWidget {
   final IconData icon;
   final String title;
   final Function() onTap;
@@ -168,22 +178,29 @@ class _DashButtonState extends State<DashButton> {
       ),
     );
   }
-}
+}*/
 
-/*Container(
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: AppTheme.appBarColor,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(flex: 1, child: SizedBox()),
-                          DashButton(icon: IconlyBold.category, title: "Dashboard", onTap: () {}),
-                          DashButton(icon: IconlyBold.ticket, title: "Movies", onTap: () {}),
-                          DashButton(icon: IconlyBold.setting, title: "Settings", onTap: () {}),
-                          Expanded(flex: 3, child: SizedBox()),
-                        ],
-                      ),
-                    ),*/
+/*class MyList extends StatelessWidget {
+  const MyList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300,
+      decoration: BoxDecoration(
+        color: AppTheme.appBarColor,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(flex: 1, child: SizedBox()),
+          DashButton(icon: IconlyBold.category, title: "Dashboard", onTap: () {}),
+          DashButton(icon: IconlyBold.ticket, title: "Movies", onTap: () {}),
+          DashButton(icon: IconlyBold.setting, title: "Settings", onTap: () {}),
+          Expanded(flex: 3, child: SizedBox()),
+        ],
+      ),
+    );
+  }
+}*/
