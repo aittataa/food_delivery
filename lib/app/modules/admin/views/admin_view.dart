@@ -126,7 +126,7 @@ class MovieShape extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
         child: CachedNetworkImage(
           imageUrl: "${movie.photo}",
-          // fit: BoxFit.cover,
+          fit: BoxFit.cover,
           placeholder: (context, url) => BouncePoint(state: true, size: 25),
           errorWidget: (context, url, error) => Icon(Icons.error),
         ),
