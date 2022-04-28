@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 
 import '../../../config/constants/app_constant.dart';
 import '../../../config/themes/app_theme.dart';
@@ -26,7 +27,7 @@ class MovieShape extends StatelessWidget {
           imageUrl: "${movie.photo}",
           fit: BoxFit.cover,
           placeholder: (context, url) => BouncePoint(state: true, size: 25),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => Icon(IconlyBold.danger, color: AppTheme.redColor),
         ),
       ),
       // child: EmptyBox(label: "${movie.id}"),

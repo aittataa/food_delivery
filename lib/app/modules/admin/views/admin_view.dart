@@ -64,35 +64,26 @@ class _AdminViewState extends State<AdminView> {
                   ),
                 ),
               ),
-              Container(
-                // margin: EdgeInsets.all(10),
-                // padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-                // decoration: BoxDecoration(color: AppTheme.secondaryBackColor),
-                child: ListTile(
-                  contentPadding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-                  // leading: Image.asset(AppMessage.appIconRound),
-                  title: Text(
-                    AppMessage.appTitle,
+              ListTile(
+                contentPadding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+                title: SizedBox(
+                  width: 100,
+                  child: TextField(),
+                ),
+                trailing: OutlinedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Add New Movie",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: AppTheme.primaryTextColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25,
                     ),
                   ),
-                  trailing: OutlinedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Add New Movie",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: AppTheme.textColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: AppTheme.mainColor,
-                    ),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: AppTheme.mainColor,
+                    padding: EdgeInsets.all(25),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                   ),
                 ),
               ),
