@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movies_land/app/config/constants/app_constant.dart';
 import 'package:movies_land/app/config/functions/app_function.dart';
 import 'package:movies_land/app/modules/admin/controllers/admin_controller.dart';
 
@@ -11,6 +9,7 @@ import '../../../config/themes/app_theme.dart';
 import '../../../data/models/movies.dart';
 import '../../../shared/bounce_point.dart';
 import '../../../shared/empty_box.dart';
+import '../widgets/movies_shape.dart';
 
 class AdminView extends StatefulWidget {
   const AdminView({Key? key}) : super(key: key);
@@ -65,6 +64,38 @@ class _AdminViewState extends State<AdminView> {
                   ),
                 ),
               ),
+              Container(
+                // margin: EdgeInsets.all(10),
+                // padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+                // decoration: BoxDecoration(color: AppTheme.secondaryBackColor),
+                child: ListTile(
+                  contentPadding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+                  // leading: Image.asset(AppMessage.appIconRound),
+                  title: Text(
+                    AppMessage.appTitle,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppTheme.primaryTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                  ),
+                  trailing: OutlinedButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Add New Movie",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: AppTheme.textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: AppTheme.mainColor,
+                    ),
+                  ),
+                ),
+              ),
               Expanded(
                 child: StreamBuilder<QuerySnapshot>(
                     stream: _stream,
@@ -75,7 +106,9 @@ class _AdminViewState extends State<AdminView> {
                         case ConnectionState.none:
                           return EmptyBox(label: snapshot.error.toString());
                         case ConnectionState.active:
-                          if (snapshot.hasData) {
+                          if (snapshot.hasError) {
+                            return EmptyBox(label: snapshot.error.toString());
+                          } else if (snapshot.hasData) {
                             final int itemCount = snapshot.data!.docs.length;
                             return GridView.builder(
                               padding: EdgeInsets.all(50),
@@ -83,17 +116,17 @@ class _AdminViewState extends State<AdminView> {
                               gridDelegate: AppFunction.gridDelegate(crossAxisCount: crossAxisCount, spacing: 50, childAspectRatio: 0.75),
                               itemCount: itemCount,
                               itemBuilder: (_, i) {
-                                final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                                final Map<String, dynamic> data = snapshot.data!.docs[i].data() as Map<String, dynamic>;
                                 final Movies movie = Movies.fromMap(data);
                                 return MovieShape(movie: movie);
                               },
                             );
                           }
-                          return EmptyBox();
+                          return const EmptyBox();
                         case ConnectionState.done:
                           return EmptyBox(label: "Done");
                         default:
-                          return const SizedBox();
+                          return EmptyBox(label: "default");
                       }
                     }),
               ),
@@ -101,37 +134,6 @@ class _AdminViewState extends State<AdminView> {
           ),
         );
       }),
-    );
-  }
-}
-
-class MovieShape extends StatelessWidget {
-  final Movies movie;
-  const MovieShape({Key? key, required this.movie}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: AppTheme.primaryBackColor,
-        borderRadius: BorderRadius.circular(25),
-        boxShadow: [AppConstant.boxShadow],
-        // image: DecorationImage(
-        //   fit: BoxFit.cover,
-        //   image: CachedNetworkImageProvider("${movie.photo}"),
-        // ),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(25),
-        child: CachedNetworkImage(
-          imageUrl: "${movie.photo}",
-          fit: BoxFit.cover,
-          placeholder: (context, url) => BouncePoint(state: true, size: 25),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),
-      ),
-      // child: EmptyBox(label: "${movie.id}"),
     );
   }
 }
