@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movies_land/app/config/constants/app_constant.dart';
 import 'package:movies_land/app/config/functions/app_function.dart';
 import 'package:movies_land/app/modules/admin/controllers/admin_controller.dart';
 
@@ -65,10 +66,17 @@ class _AdminViewState extends State<AdminView> {
                 ),
               ),
               ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-                title: SizedBox(
-                  width: 100,
-                  child: TextField(),
+                contentPadding: EdgeInsets.all(20),
+                title: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: SearchText(),
+                    ),
+                  ],
                 ),
                 trailing: OutlinedButton(
                   onPressed: () {},
@@ -82,6 +90,9 @@ class _AdminViewState extends State<AdminView> {
                   ),
                   style: OutlinedButton.styleFrom(
                     backgroundColor: AppTheme.mainColor,
+                    shadowColor: AppTheme.mainColor,
+                    primary: AppTheme.mainColor,
+                    onSurface: AppTheme.mainColor,
                     padding: EdgeInsets.all(25),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                   ),
@@ -125,6 +136,38 @@ class _AdminViewState extends State<AdminView> {
           ),
         );
       }),
+    );
+  }
+}
+
+class SearchText extends StatelessWidget {
+  final TextEditingController? controller;
+  final Function(String)? onChanged;
+  const SearchText({Key? key, this.controller, this.onChanged}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      onChanged: onChanged,
+      controller: controller,
+      cursorColor: AppTheme.mainColor,
+      style: TextStyle(
+        color: AppTheme.secondaryTextColor.withOpacity(.75),
+        fontWeight: FontWeight.w900,
+      ),
+      scrollPadding: EdgeInsets.zero,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.zero,
+        prefixIcon: Icon(Icons.search, color: AppTheme.mainColor),
+        hintText: "Search...",
+        hintStyle: TextStyle(
+          color: AppTheme.textColor,
+          fontWeight: FontWeight.bold,
+        ),
+        border: AppConstant.inputBorder,
+        enabledBorder: AppConstant.inputBorder,
+        focusedBorder: AppConstant.inputBorder,
+      ),
     );
   }
 }

@@ -33,8 +33,8 @@ class AppConstant {
 
   /// TODO : Decoration
   static OutlineInputBorder inputBorder = OutlineInputBorder(
-    borderSide: BorderSide.none,
-    borderRadius: BorderRadius.circular(10),
+    borderRadius: BorderRadius.circular(100),
+    borderSide: BorderSide(width: 2.5, color: AppTheme.borderColor),
   );
 
   static BoxDecoration decorationBox = BoxDecoration(
