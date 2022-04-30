@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movies_land/app/config/constants/app_constant.dart';
@@ -115,6 +116,12 @@ class _AdminViewState extends State<AdminView> {
                                 hintText: "Description...",
                                 maxLines: 7,
                               ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 500,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
                             ),
                           ),
                           SizedBox(
