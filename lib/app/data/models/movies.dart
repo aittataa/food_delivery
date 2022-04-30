@@ -6,32 +6,41 @@ List<Movies> moviesFromJson(String str) {
 
 class Movies {
   late String? id;
-  late String? name;
+  late String? title;
   late String? description;
   late String? photo;
   late String? type;
-  late DateTime? release;
+  late bool status;
+  late DateTime? releasedAt;
+  late DateTime? createdAt;
+  late DateTime? deletedAt;
   late List<String> categories;
   late List<String> servers;
 
   Movies({
     this.id,
-    this.name,
+    this.title,
     this.description,
     this.photo,
     this.type,
-    this.release,
+    this.status = false,
+    this.releasedAt,
+    this.createdAt,
+    this.deletedAt,
     this.categories = const [],
     this.servers = const [],
   });
   factory Movies.fromMap(Map<String, dynamic> data) {
     return Movies(
       id: data["id"],
-      name: data["name"],
+      title: data["title"],
       description: data["description"],
       photo: data["photo"],
       type: data["type"],
-      release: data["release"].toDate(),
+      status: data["status"],
+      releasedAt: data["released_at"].toDate(),
+      createdAt: data["created_at"].toDate(),
+      //deletedAt: data["deleted_at"].toDate(),
       categories: data["categories"] == null ? [] : List<String>.from(data["categories"].map((e) => e)),
       servers: data["servers"] == null ? [] : List<String>.from(data["servers"].map((e) => e)),
     );
@@ -40,11 +49,14 @@ class Movies {
   Map<String, dynamic> toMap() {
     return {
       "id": id,
-      "name": name,
+      "title": title,
       "description": description,
       "photo": photo,
       "type": type,
-      "release": release,
+      "status": status,
+      "released_at": releasedAt,
+      "created_at": createdAt,
+      "deleted_at": deletedAt,
       "categories": categories.map((e) => e).toList(),
       "servers": servers.map((e) => e).toList(),
     };

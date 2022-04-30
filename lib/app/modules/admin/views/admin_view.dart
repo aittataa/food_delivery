@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:movies_land/app/config/constants/app_constant.dart';
 import 'package:movies_land/app/config/functions/app_function.dart';
 import 'package:movies_land/app/modules/admin/controllers/admin_controller.dart';
+import 'package:movies_land/app/shared/text_box.dart';
 
 import '../../../config/messages/app_message.dart';
 import '../../../config/themes/app_theme.dart';
@@ -29,25 +30,24 @@ class _AdminViewState extends State<AdminView> {
         late int crossAxisCount = 5;
         if (constraints.constrainWidth() < 600) {
           crossAxisCount = 1;
-        } else if (constraints.constrainWidth() < 800) {
+        } else if (constraints.constrainWidth() < 900) {
           crossAxisCount = 2;
-        } else if (constraints.constrainWidth() < 1000) {
-          crossAxisCount = 3;
         } else if (constraints.constrainWidth() < 1200) {
+          crossAxisCount = 3;
+        } else if (constraints.constrainWidth() < 1500) {
           crossAxisCount = 4;
-        } else if (constraints.constrainWidth() < 1400) {
+        } else //if (constraints.constrainWidth() < 1800)
+        {
           crossAxisCount = 5;
         }
-
         return Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
+                width: double.infinity,
                 padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: AppTheme.secondaryBackColor,
-                ),
+                decoration: BoxDecoration(color: AppTheme.secondaryBackColor),
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: Image.asset(AppMessage.appIconRound),
@@ -78,64 +78,130 @@ class _AdminViewState extends State<AdminView> {
                     ),
                   ],
                 ),
-                trailing: OutlinedButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Add New Movie",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: AppTheme.primaryTextColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: AppTheme.mainColor,
-                    shadowColor: AppTheme.mainColor,
-                    primary: AppTheme.mainColor,
-                    onSurface: AppTheme.mainColor,
-                    padding: EdgeInsets.all(25),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                  ),
+                trailing: ButtonClick(
+                  label: "Add New Movie",
+                  onPressed: () {
+                    print(constraints.maxWidth);
+                  },
                 ),
               ),
               Expanded(
-                child: StreamBuilder<QuerySnapshot>(
-                    stream: _stream,
-                    builder: (context, snapshot) {
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.waiting:
-                          return BouncePoint();
-                        case ConnectionState.none:
-                          return EmptyBox(label: snapshot.error.toString());
-                        case ConnectionState.active:
-                          if (snapshot.hasError) {
-                            return EmptyBox(label: snapshot.error.toString());
-                          } else if (snapshot.hasData) {
-                            final int itemCount = snapshot.data!.docs.length;
-                            return GridView.builder(
-                              padding: EdgeInsets.all(50),
-                              scrollDirection: Axis.vertical,
-                              gridDelegate: AppFunction.gridDelegate(crossAxisCount: crossAxisCount, spacing: 50, childAspectRatio: 0.75),
-                              itemCount: itemCount,
-                              itemBuilder: (_, i) {
-                                final Map<String, dynamic> data = snapshot.data!.docs[i].data() as Map<String, dynamic>;
-                                final Movies movie = Movies.fromMap(data);
-                                return MovieShape(movie: movie);
-                              },
-                            );
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    Container(
+                      // width: 500,
+                      // padding: EdgeInsets.all(10),
+                      // decoration: BoxDecoration(
+                      // borderRadius: BorderRadius.circular(25),
+                      // border: Border.all(color: AppTheme.borderColor, width: 2.5),
+                      // ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            width: 500,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              title: TextBox(
+                                hintText: "Title",
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 500,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              title: TextBox(
+                                hintText: "Description...",
+                                maxLines: 7,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 250,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              title: ButtonClick(
+                                label: "Save",
+                                onPressed: () {
+                                  print(constraints.maxWidth);
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    StreamBuilder<QuerySnapshot>(
+                        stream: _stream,
+                        builder: (context, snapshot) {
+                          switch (snapshot.connectionState) {
+                            case ConnectionState.waiting:
+                              return BouncePoint();
+                            case ConnectionState.none:
+                              return EmptyBox(label: snapshot.error.toString());
+                            case ConnectionState.active:
+                              if (snapshot.hasError) {
+                                return EmptyBox(label: snapshot.error.toString());
+                              } else if (snapshot.hasData) {
+                                final int itemCount = snapshot.data!.docs.length * 10;
+                                return GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  padding: EdgeInsets.all(50),
+                                  scrollDirection: Axis.vertical,
+                                  gridDelegate: AppFunction.gridDelegate(crossAxisCount: crossAxisCount, spacing: 50, childAspectRatio: 0.75),
+                                  itemCount: itemCount,
+                                  itemBuilder: (_, i) {
+                                    final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                                    final Movies movie = Movies.fromMap(data);
+                                    return MovieShape(movie: movie);
+                                  },
+                                );
+                              }
+                              return const EmptyBox();
+                            case ConnectionState.done:
+                              return EmptyBox(label: "Done");
+                            default:
+                              return EmptyBox(label: "default");
                           }
-                          return const EmptyBox();
-                        case ConnectionState.done:
-                          return EmptyBox(label: "Done");
-                        default:
-                          return EmptyBox(label: "default");
-                      }
-                    }),
+                        }),
+                  ],
+                ),
               ),
             ],
           ),
         );
       }),
+    );
+  }
+}
+
+class ButtonClick extends StatelessWidget {
+  final String label;
+  final Function()? onPressed;
+  const ButtonClick({Key? key, required this.label, this.onPressed}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: onPressed,
+      child: Text(
+        label,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: AppTheme.primaryTextColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      style: OutlinedButton.styleFrom(
+        backgroundColor: AppTheme.mainColor,
+        shadowColor: AppTheme.mainColor,
+        primary: AppTheme.mainColor,
+        onSurface: AppTheme.mainColor,
+        padding: EdgeInsets.all(25),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+      ),
     );
   }
 }
