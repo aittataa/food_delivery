@@ -1,18 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:iconly/iconly.dart';
 import 'package:movies_land/app/config/constants/app_constant.dart';
-import 'package:movies_land/app/config/functions/app_function.dart';
 import 'package:movies_land/app/modules/admin/controllers/admin_controller.dart';
-import 'package:movies_land/app/shared/text_box.dart';
 
 import '../../../config/messages/app_message.dart';
 import '../../../config/themes/app_theme.dart';
-import '../../../data/models/movies.dart';
-import '../../../shared/bounce_point.dart';
-import '../../../shared/empty_box.dart';
-import '../widgets/movies_shape.dart';
+import '../widgets/icons_button.dart';
+import '../widgets/text_box.dart';
 
 class AdminView extends StatefulWidget {
   const AdminView({Key? key}) : super(key: key);
@@ -23,6 +20,25 @@ class AdminView extends StatefulWidget {
 class _AdminViewState extends State<AdminView> {
   final AdminController controller = Get.put(AdminController());
   late Stream<QuerySnapshot> _stream = controller.getMovies;
+  final TextEditingController description = TextEditingController();
+  //
+  final FocusNode focusNode = FocusNode();
+  //
+  void onKeyPress(RawKeyEvent event) {
+    final RawKeyEventData data = event.data;
+    if (data.keyLabel == "Enter" && event.isShiftPressed) {
+      final TextEditingValue value = description.value;
+      final String text = description.text.substring(0, value.selection.start - 1) + description.text.substring(value.selection.start);
+      description.value = TextEditingValue(
+        text: text,
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: text.length),
+        ),
+      );
+    }
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -41,6 +57,16 @@ class _AdminViewState extends State<AdminView> {
         {
           crossAxisCount = 5;
         }
+
+        return RawKeyboardListener(
+          focusNode: focusNode,
+          onKey: onKeyPress,
+          child: TextBox(
+            controller: description,
+            maxLines: 10,
+            hintText: 'Type a description...',
+          ),
+        );
         return Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -52,6 +78,7 @@ class _AdminViewState extends State<AdminView> {
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: Image.asset(AppMessage.appIconRound),
+                  trailing: Image.asset(AppMessage.appLogo),
                   title: Text(
                     AppMessage.appTitle,
                     textAlign: TextAlign.center,
@@ -61,60 +88,66 @@ class _AdminViewState extends State<AdminView> {
                       fontSize: 25,
                     ),
                   ),
-                  trailing: Image.asset(
-                    AppMessage.appLogo,
-                  ),
-                ),
-              ),
-              ListTile(
-                contentPadding: EdgeInsets.all(20),
-                title: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    SizedBox(
-                      width: 300,
-                      child: SearchText(),
-                    ),
-                  ],
-                ),
-                trailing: ButtonClick(
-                  label: "Add New Movie",
-                  onPressed: () {
-                    print(constraints.maxWidth);
-                  },
                 ),
               ),
               Expanded(
                 child: ListView(
                   shrinkWrap: true,
                   children: [
+                    ListTile(
+                      contentPadding: EdgeInsets.all(20),
+                      title: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            width: 300,
+                            child: SearchText(),
+                          ),
+                        ],
+                      ),
+                      trailing: ButtonClick(
+                        label: "Add New Movie",
+                        onPressed: () {
+                          print(constraints.maxWidth);
+                        },
+                      ),
+                    ),
                     Container(
-                      // width: 500,
-                      // padding: EdgeInsets.all(10),
-                      // decoration: BoxDecoration(
-                      // borderRadius: BorderRadius.circular(25),
-                      // border: Border.all(color: AppTheme.borderColor, width: 2.5),
-                      // ),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: 500,
                             child: ListTile(
                               contentPadding: EdgeInsets.symmetric(horizontal: 25),
                               title: TextBox(
+                                controller: TextEditingController(),
                                 hintText: "Title",
                               ),
                             ),
                           ),
-                          SizedBox(
+                          Container(
                             width: 500,
+                            // height: 175,
                             child: ListTile(
                               contentPadding: EdgeInsets.symmetric(horizontal: 25),
                               title: TextBox(
+                                controller: description,
                                 hintText: "Description...",
-                                maxLines: 7,
+                                maxLines: 5,
+                              ),
+                              subtitle: RawKeyboardListener(
+                                focusNode: focusNode,
+                                onKey: onKeyPress,
+                                child: TextBox(
+                                  controller: description,
+                                  maxLines: 10,
+                                  hintText: 'Type a description...',
+                                ),
                               ),
                             ),
                           ),
@@ -122,6 +155,8 @@ class _AdminViewState extends State<AdminView> {
                             width: 500,
                             child: ListTile(
                               contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              title: TextBox(controller: TextEditingController(), hintText: "Type New Category"),
+                              trailing: IconsButton(icon: IconlyLight.plus),
                             ),
                           ),
                           SizedBox(
@@ -139,7 +174,7 @@ class _AdminViewState extends State<AdminView> {
                         ],
                       ),
                     ),
-                    StreamBuilder<QuerySnapshot>(
+                    /* StreamBuilder<QuerySnapshot>(
                         stream: _stream,
                         builder: (context, snapshot) {
                           switch (snapshot.connectionState) {
@@ -154,7 +189,7 @@ class _AdminViewState extends State<AdminView> {
                                 final int itemCount = snapshot.data!.docs.length * 10;
                                 return GridView.builder(
                                   shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  // physics: NeverScrollableScrollPhysics(),
                                   padding: EdgeInsets.all(50),
                                   scrollDirection: Axis.vertical,
                                   gridDelegate: AppFunction.gridDelegate(crossAxisCount: crossAxisCount, spacing: 50, childAspectRatio: 0.75),
@@ -172,7 +207,7 @@ class _AdminViewState extends State<AdminView> {
                             default:
                               return EmptyBox(label: "default");
                           }
-                        }),
+                        }),*/
                   ],
                 ),
               ),

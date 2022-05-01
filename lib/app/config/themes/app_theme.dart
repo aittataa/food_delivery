@@ -17,7 +17,7 @@ class AppTheme {
 
   /// TODO : Main Colors
   static const Color mainColor = const Color(0xffa7208c);
-  static const Color mainColor_2 = const Color(0xffbb009e);
+  // static const Color mainColor_2 = const Color(0xffbb009e);
 
   /// TODO : Back Colors
   static const Color backColor = const Color(0xFFF0F0F0);
