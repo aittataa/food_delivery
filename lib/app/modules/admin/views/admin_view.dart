@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-import 'package:movies_land/app/config/constants/app_constant.dart';
-import 'package:movies_land/app/modules/admin/controllers/admin_controller.dart';
 
+import '../../../config/constants/app_constant.dart';
+import '../../../config/functions/app_function.dart';
 import '../../../config/messages/app_message.dart';
 import '../../../config/themes/app_theme.dart';
+import '../../../data/models/movies.dart';
+import '../../../shared/bounce_point.dart';
+import '../../../shared/empty_box.dart';
+import '../controllers/admin_controller.dart';
 import '../widgets/icons_button.dart';
+import '../widgets/movies_shape.dart';
 import '../widgets/text_box.dart';
 
 class AdminView extends StatefulWidget {
@@ -57,16 +62,6 @@ class _AdminViewState extends State<AdminView> {
         {
           crossAxisCount = 5;
         }
-
-        return RawKeyboardListener(
-          focusNode: focusNode,
-          onKey: onKeyPress,
-          child: TextBox(
-            controller: description,
-            maxLines: 10,
-            hintText: 'Type a description...',
-          ),
-        );
         return Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -132,15 +127,9 @@ class _AdminViewState extends State<AdminView> {
                           ),
                           Container(
                             width: 500,
-                            // height: 175,
                             child: ListTile(
                               contentPadding: EdgeInsets.symmetric(horizontal: 25),
-                              title: TextBox(
-                                controller: description,
-                                hintText: "Description...",
-                                maxLines: 5,
-                              ),
-                              subtitle: RawKeyboardListener(
+                              title: RawKeyboardListener(
                                 focusNode: focusNode,
                                 onKey: onKeyPress,
                                 child: TextBox(
@@ -174,40 +163,41 @@ class _AdminViewState extends State<AdminView> {
                         ],
                       ),
                     ),
-                    /* StreamBuilder<QuerySnapshot>(
-                        stream: _stream,
-                        builder: (context, snapshot) {
-                          switch (snapshot.connectionState) {
-                            case ConnectionState.waiting:
-                              return BouncePoint();
-                            case ConnectionState.none:
+                    StreamBuilder<QuerySnapshot>(
+                      stream: _stream,
+                      builder: (context, snapshot) {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return Center(child: BouncePoint());
+                          case ConnectionState.none:
+                            return EmptyBox(label: snapshot.error.toString());
+                          case ConnectionState.active:
+                            if (snapshot.hasError) {
                               return EmptyBox(label: snapshot.error.toString());
-                            case ConnectionState.active:
-                              if (snapshot.hasError) {
-                                return EmptyBox(label: snapshot.error.toString());
-                              } else if (snapshot.hasData) {
-                                final int itemCount = snapshot.data!.docs.length * 10;
-                                return GridView.builder(
-                                  shrinkWrap: true,
-                                  // physics: NeverScrollableScrollPhysics(),
-                                  padding: EdgeInsets.all(50),
-                                  scrollDirection: Axis.vertical,
-                                  gridDelegate: AppFunction.gridDelegate(crossAxisCount: crossAxisCount, spacing: 50, childAspectRatio: 0.75),
-                                  itemCount: itemCount,
-                                  itemBuilder: (_, i) {
-                                    final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
-                                    final Movies movie = Movies.fromMap(data);
-                                    return MovieShape(movie: movie);
-                                  },
-                                );
-                              }
-                              return const EmptyBox();
-                            case ConnectionState.done:
-                              return EmptyBox(label: "Done");
-                            default:
-                              return EmptyBox(label: "default");
-                          }
-                        }),*/
+                            } else if (snapshot.hasData) {
+                              final int itemCount = snapshot.data!.docs.length * 10;
+                              return GridView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                padding: EdgeInsets.all(50),
+                                scrollDirection: Axis.vertical,
+                                gridDelegate: AppFunction.gridDelegate(crossAxisCount: crossAxisCount, spacing: 50, childAspectRatio: 0.75),
+                                itemCount: itemCount,
+                                itemBuilder: (_, i) {
+                                  final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                                  final Movies movie = Movies.fromMap(data);
+                                  return MovieShape(movie: movie);
+                                },
+                              );
+                            }
+                            return const EmptyBox();
+                          case ConnectionState.done:
+                            return EmptyBox(label: "Done");
+                          default:
+                            return EmptyBox(label: "default");
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -279,72 +269,3 @@ class SearchText extends StatelessWidget {
     );
   }
 }
-
-/*class DashButton extends StatefulWidget {
-  final IconData icon;
-  final String title;
-  final Function() onTap;
-  const DashButton({Key? key, required this.icon, required this.title, required this.onTap}) : super(key: key);
-  @override
-  State<DashButton> createState() => _DashButtonState(icon, title, onTap);
-}
-
-class _DashButtonState extends State<DashButton> {
-  final IconData icon;
-  final String title;
-  final Function() onTap;
-  _DashButtonState(this.icon, this.title, this.onTap);
-  late Color _textColor = AppTheme.textColor;
-  late Color _iconColor = AppTheme.iconColor;
-  late Color _backColor = AppTheme.transparentColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (value) {
-        setState(() {});
-        _textColor = AppTheme.primaryTextColor;
-        _iconColor = AppTheme.primaryIconColor;
-        _backColor = AppTheme.hoverColor;
-      },
-      onExit: (value) {
-        setState(() {});
-        _textColor = AppTheme.textColor;
-        _iconColor = AppTheme.iconColor;
-        _backColor = AppTheme.transparentColor;
-      },
-      child: ListTile(
-        onTap: onTap,
-        tileColor: _backColor,
-        contentPadding: EdgeInsets.all(10),
-        leading: Icon(icon, color: _iconColor),
-        title: Text(title, style: TextStyle(color: _textColor)),
-      ),
-    );
-  }
-}*/
-
-/*class MyList extends StatelessWidget {
-  const MyList({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      decoration: BoxDecoration(
-        color: AppTheme.appBarColor,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(flex: 1, child: SizedBox()),
-          DashButton(icon: IconlyBold.category, title: "Dashboard", onTap: () {}),
-          DashButton(icon: IconlyBold.ticket, title: "Movies", onTap: () {}),
-          DashButton(icon: IconlyBold.setting, title: "Settings", onTap: () {}),
-          Expanded(flex: 3, child: SizedBox()),
-        ],
-      ),
-    );
-  }
-}*/
