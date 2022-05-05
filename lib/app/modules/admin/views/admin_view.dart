@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:iconly/iconly.dart';
+import 'package:movies_land/app/shared/radio_box.dart';
 
 import '../../../config/constants/app_constant.dart';
 import '../../../config/functions/app_function.dart';
@@ -26,22 +26,8 @@ class _AdminViewState extends State<AdminView> {
   final AdminController controller = Get.put(AdminController());
   late Stream<QuerySnapshot> _stream = controller.getMovies;
   final TextEditingController description = TextEditingController();
-  //
-  final FocusNode focusNode = FocusNode();
-  //
-  void onKeyPress(RawKeyEvent event) {
-    final RawKeyEventData data = event.data;
-    if (data.keyLabel == "Enter" && event.isShiftPressed) {
-      final TextEditingValue value = description.value;
-      final String text = description.text.substring(0, value.selection.start - 1) + description.text.substring(value.selection.start);
-      description.value = TextEditingValue(
-        text: text,
-        selection: TextSelection.fromPosition(
-          TextPosition(offset: text.length),
-        ),
-      );
-    }
-  }
+
+  late int typeIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -128,14 +114,10 @@ class _AdminViewState extends State<AdminView> {
                             width: 500,
                             child: ListTile(
                               contentPadding: EdgeInsets.symmetric(horizontal: 25),
-                              title: RawKeyboardListener(
-                                focusNode: focusNode,
-                                onKey: onKeyPress,
-                                child: TextBox(
-                                  controller: description,
-                                  maxLines: 10,
-                                  hintText: 'Type a description...',
-                                ),
+                              title: TextBox(
+                                controller: description,
+                                maxLines: 10,
+                                hintText: 'Type a description...',
                               ),
                             ),
                           ),
@@ -144,7 +126,69 @@ class _AdminViewState extends State<AdminView> {
                             child: ListTile(
                               contentPadding: EdgeInsets.symmetric(horizontal: 25),
                               title: TextBox(controller: TextEditingController(), hintText: "Type New Category"),
-                              trailing: IconsButton(icon: IconlyLight.plus),
+                              trailing: IconsButton(icon: CupertinoIcons.plus),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 500,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              title: TextBox(controller: TextEditingController(), hintText: "Type New Server"),
+                              trailing: IconsButton(icon: CupertinoIcons.plus),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 500,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              leading: Text(
+                                "Pick Type",
+                                style: TextStyle(
+                                  color: AppTheme.textColor,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              title: Row(
+                                children: [
+                                  Expanded(child: SizedBox(width: 1)),
+                                  RadioBox(
+                                    state: typeIndex == 0,
+                                    size: 25,
+                                    onTap: () {
+                                      setState(() => {typeIndex = 0});
+                                    },
+                                  ),
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      "Movie",
+                                      style: TextStyle(
+                                        color: AppTheme.textColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(child: SizedBox(width: 1)),
+                                  RadioBox(
+                                    state: typeIndex == 1,
+                                    size: 25,
+                                    onTap: () {
+                                      setState(() => {typeIndex = 1});
+                                    },
+                                  ),
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      "Series",
+                                      style: TextStyle(
+                                        color: AppTheme.textColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(child: SizedBox(width: 1)),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
