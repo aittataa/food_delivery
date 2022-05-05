@@ -97,8 +97,8 @@ class _AdminViewState extends State<AdminView> {
                     Container(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SizedBox(
                             width: 500,
@@ -140,7 +140,8 @@ class _AdminViewState extends State<AdminView> {
                           SizedBox(
                             width: 500,
                             child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              tileColor: Colors.red,
+                              contentPadding: EdgeInsets.symmetric(horizontal: 50),
                               leading: Text(
                                 "Pick Type",
                                 style: TextStyle(
