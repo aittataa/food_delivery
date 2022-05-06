@@ -140,7 +140,6 @@ class _AdminViewState extends State<AdminView> {
                           SizedBox(
                             width: 500,
                             child: ListTile(
-                              tileColor: Colors.red,
                               contentPadding: EdgeInsets.symmetric(horizontal: 50),
                               leading: Text(
                                 "Pick Type",
