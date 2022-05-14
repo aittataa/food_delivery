@@ -43,8 +43,7 @@ class _AdminViewState extends State<AdminView> {
           crossAxisCount = 3;
         } else if (constraints.constrainWidth() < 1500) {
           crossAxisCount = 4;
-        } else //if (constraints.constrainWidth() < 1800)
-        {
+        } else {
           crossAxisCount = 5;
         }
         return Container(
