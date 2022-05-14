@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:movies_land/app/config/messages/app_message.dart';
 
+import '../../../config/messages/app_message.dart';
 import '../../../config/themes/app_theme.dart';
 
 class FooterBar extends StatelessWidget {

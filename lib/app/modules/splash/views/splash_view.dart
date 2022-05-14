@@ -1,10 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_land/app/modules/initial/views/initial_view.dart';
-import 'package:movies_land/app/shared/bounce_point.dart';
 
 import '../../../config/constants/app_constant.dart';
 import '../../../config/themes/app_theme.dart';
+import '../../../shared/bounce_point.dart';
+import '../../initial/views/initial_view.dart';
 
 class SplashView extends StatelessWidget {
   @override

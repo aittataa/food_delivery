@@ -2,18 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movies_land/app/shared/radio_box.dart';
 
-import '../../../config/constants/app_constant.dart';
 import '../../../config/functions/app_function.dart';
 import '../../../config/messages/app_message.dart';
 import '../../../config/themes/app_theme.dart';
 import '../../../data/models/movies.dart';
 import '../../../shared/bounce_point.dart';
 import '../../../shared/empty_box.dart';
+import '../../../shared/radio_box.dart';
 import '../controllers/admin_controller.dart';
+import '../widgets/button_click.dart';
 import '../widgets/icons_button.dart';
 import '../widgets/movies_shape.dart';
+import '../widgets/search_text.dart';
 import '../widgets/text_box.dart';
 
 class AdminView extends StatefulWidget {
@@ -247,67 +248,6 @@ class _AdminViewState extends State<AdminView> {
           ),
         );
       }),
-    );
-  }
-}
-
-class ButtonClick extends StatelessWidget {
-  final String label;
-  final Function()? onPressed;
-  const ButtonClick({Key? key, required this.label, this.onPressed}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: onPressed,
-      child: Text(
-        label,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: AppTheme.primaryTextColor,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      style: OutlinedButton.styleFrom(
-        backgroundColor: AppTheme.mainColor,
-        shadowColor: AppTheme.mainColor,
-        primary: AppTheme.mainColor,
-        onSurface: AppTheme.mainColor,
-        padding: EdgeInsets.all(25),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-      ),
-    );
-  }
-}
-
-class SearchText extends StatelessWidget {
-  final TextEditingController? controller;
-  final Function(String)? onChanged;
-  const SearchText({Key? key, this.controller, this.onChanged}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: onChanged,
-      controller: controller,
-      cursorColor: AppTheme.mainColor,
-      style: TextStyle(
-        color: AppTheme.secondaryTextColor.withOpacity(.75),
-        fontWeight: FontWeight.w900,
-      ),
-      scrollPadding: EdgeInsets.zero,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.zero,
-        prefixIcon: Icon(Icons.search, color: AppTheme.mainColor),
-        hintText: "Search...",
-        hintStyle: TextStyle(
-          color: AppTheme.textColor,
-          fontWeight: FontWeight.bold,
-        ),
-        border: AppConstant.inputBorder,
-        enabledBorder: AppConstant.inputBorder,
-        focusedBorder: AppConstant.inputBorder,
-      ),
     );
   }
 }

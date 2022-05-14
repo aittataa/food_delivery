@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:movies_land/app/modules/admin/providers/admin_provider.dart';
 
 import '../../../data/models/movies.dart';
+import '../providers/admin_provider.dart';
 
 class AdminController extends GetxController {
   final AdminProvider _provider = Get.put(AdminProvider());

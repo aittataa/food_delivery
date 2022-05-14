@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movies_land/app/config/constants/app_constant.dart';
-import 'package:movies_land/app/modules/home/controllers/home_controller.dart';
-import 'package:movies_land/app/shared/bounce_point.dart';
-import 'package:movies_land/app/shared/empty_box.dart';
-import 'package:movies_land/app/shared/floating_button.dart';
 
+import '../../../config/constants/app_constant.dart';
 import '../../../config/messages/app_message.dart';
 import '../../../data/models/movies.dart';
+import '../../../shared/bounce_point.dart';
+import '../../../shared/empty_box.dart';
+import '../../../shared/floating_button.dart';
 import '../../../shared/header_bar.dart';
+import '../controllers/home_controller.dart';
 import '../widgets/movies_shape.dart';
 
 class HomeView extends StatefulWidget {

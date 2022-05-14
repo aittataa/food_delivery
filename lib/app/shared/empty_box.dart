@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_land/app/config/messages/app_message.dart';
 
+import '../config/messages/app_message.dart';
 import '../config/themes/app_theme.dart';
 
 class EmptyBox extends StatelessWidget {

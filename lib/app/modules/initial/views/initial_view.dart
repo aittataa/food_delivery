@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_land/app/modules/categories/views/categories_view.dart';
-import 'package:movies_land/app/modules/home/views/home_view.dart';
-import 'package:movies_land/app/modules/search/views/search_view.dart';
-import 'package:movies_land/app/modules/settings/views/settings_view.dart';
-
+import '../../categories/views/categories_view.dart';
+import '../../home/views/home_view.dart';
+import '../../search/views/search_view.dart';
+import '../../settings/views/settings_view.dart';
 import '../widgets/footer_bar.dart';
 
 class InitialView extends StatefulWidget {
