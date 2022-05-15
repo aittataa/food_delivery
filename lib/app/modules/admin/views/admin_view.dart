@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../config/functions/app_function.dart';
-import '../../../config/messages/app_message.dart';
 import '../../../config/themes/app_theme.dart';
 import '../../../data/models/movies.dart';
 import '../../../shared/bounce_point.dart';
@@ -12,6 +11,7 @@ import '../../../shared/empty_box.dart';
 import '../../../shared/radio_box.dart';
 import '../controllers/admin_controller.dart';
 import '../widgets/button_click.dart';
+import '../widgets/header_bar.dart';
 import '../widgets/icons_button.dart';
 import '../widgets/movies_shape.dart';
 import '../widgets/search_text.dart';
@@ -230,33 +230,6 @@ class _AdminViewState extends State<AdminView> {
           ),
         );
       }),
-    );
-  }
-}
-
-class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-      decoration: BoxDecoration(color: AppTheme.secondaryBackColor),
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: Image.asset(AppMessage.appIconRound),
-        trailing: Image.asset(AppMessage.appLogo),
-        title: Text(
-          AppMessage.appTitle,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: AppTheme.primaryTextColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
-        ),
-      ),
     );
   }
 }
