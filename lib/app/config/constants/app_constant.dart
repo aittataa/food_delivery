@@ -5,22 +5,12 @@ import 'package:get/get.dart';
 import '../ignores/app_ignore.dart';
 import '../themes/app_theme.dart';
 
-enum QuestionType { regular, single, multiple, date }
-enum QuestionDateType { date, time, datetime }
-
 class AppConstant {
   AppConstant._();
-
-  // static Users mainUser;
-
-  ///
-  static const double iconSize = 27.5;
 
   /// TODO : Curves
   static const Curve curve = Curves.linearToEaseOut;
 
-  /// TODO : Transitions
-  //static const Transition transitionRoute = Transition.fadeIn;
   /// TODO : Screen Size
   static double screenWidth = Get.width;
   static double screenHeight = Get.height;
