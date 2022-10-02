@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/constants/app_constant.dart';
-import '../../../config/themes/app_theme.dart';
+import "../../../config/constants/app_constant.dart";
+import "../../../config/themes/app_theme.dart";
 
 class TextBox extends StatelessWidget {
   final TextEditingController controller;
@@ -31,14 +31,14 @@ class TextBox extends StatelessWidget {
       // keyboardType: TextInputType.multiline,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           color: AppTheme.textColor,
           fontWeight: FontWeight.bold,
         ),
         border: AppConstant.inputBorder,
         enabledBorder: AppConstant.inputBorder,
         focusedBorder: AppConstant.inputBorder,
-        contentPadding: EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 10),
+        contentPadding: const EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 10),
       ),
     );
   }

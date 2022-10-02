@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+import "package:flutter/material.dart";
+import "package:iconly/iconly.dart";
 
-import '../config/constants/app_constant.dart';
-import '../config/themes/app_theme.dart';
-import 'icon_click.dart';
+import "../config/constants/app_constant.dart";
+import "../config/themes/app_theme.dart";
+import "icon_click.dart";
 
 class HeaderBar extends StatelessWidget {
   final String title;
@@ -16,7 +16,7 @@ class HeaderBar extends StatelessWidget {
     return SafeArea(
       left: false,
       child: Container(
-        margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+        margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
         decoration: BoxDecoration(
           color: AppTheme.backColor,
           borderRadius: BorderRadius.circular(15),
@@ -24,16 +24,16 @@ class HeaderBar extends StatelessWidget {
         ),
         child: ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: IconClick(icon: IconlyLight.search),
+          leading: const IconClick(icon: IconlyLight.search),
           title: Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppTheme.mainColor,
               fontWeight: FontWeight.w900,
             ),
           ),
-          trailing: IconClick(icon: IconlyBold.heart),
+          trailing: const IconClick(icon: IconlyBold.heart),
         ),
       ),
     );

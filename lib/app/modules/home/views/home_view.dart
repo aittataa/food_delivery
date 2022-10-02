@@ -1,17 +1,17 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:flutter/cupertino.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import '../../../config/constants/app_constant.dart';
-import '../../../config/messages/app_message.dart';
-import '../../../data/models/movies.dart';
-import '../../../shared/bounce_point.dart';
-import '../../../shared/empty_box.dart';
-import '../../../shared/floating_button.dart';
-import '../../../shared/header_bar.dart';
-import '../controllers/home_controller.dart';
-import '../widgets/movies_shape.dart';
+import "../../../config/constants/app_constant.dart";
+import "../../../config/messages/app_message.dart";
+import "../../../data/models/movies.dart";
+import "../../../shared/bounce_point.dart";
+import "../../../shared/empty_box.dart";
+import "../../../shared/floating_button.dart";
+import "../../../shared/header_bar.dart";
+import "../controllers/home_controller.dart";
+import "../widgets/movies_shape.dart";
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -36,17 +36,17 @@ class _HomeViewState extends State<HomeView> {
       body: ListView(
         children: [
           /// TODO : AppBar
-          HeaderBar(title: AppMessage.appTitle),
+          const HeaderBar(title: AppMessage.appTitle),
 
           /// TODO : Body
           SizedBox(
             height: AppConstant.screenWidth,
             child: StreamBuilder<QuerySnapshot>(
               stream: stream,
-              builder: (_, snapshot) {
+              builder: (_, AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    return BouncePoint();
+                    return const BouncePoint();
                   case ConnectionState.none:
                     return EmptyBox(label: snapshot.error.toString());
                   case ConnectionState.active:
@@ -58,10 +58,10 @@ class _HomeViewState extends State<HomeView> {
                         physics: const BouncingScrollPhysics(),
                         controller: PageController(viewportFraction: .75, initialPage: 0),
                         itemCount: itemCount,
-                        onPageChanged: (index) {
+                        onPageChanged: (int index) {
                           setState(() => {pageIndex = index});
                         },
-                        itemBuilder: (_, i) {
+                        itemBuilder: (_, int i) {
                           final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
                           final Movies movie = Movies.fromMap(data);
                           final bool state = pageIndex == i;
@@ -69,9 +69,9 @@ class _HomeViewState extends State<HomeView> {
                         },
                       );
                     }
-                    return EmptyBox();
+                    return const EmptyBox();
                   case ConnectionState.done:
-                    return EmptyBox(label: "Done");
+                    return const EmptyBox(label: "Done");
                   default:
                     return const SizedBox();
                 }

@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:get/get.dart";
 
-import '../../../data/models/movies.dart';
+import "../../../data/models/movies.dart";
 
 class AdminProvider extends GetConnect {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
@@ -24,7 +24,7 @@ class AdminProvider extends GetConnect {
   }
 
   Future<Movies> getMoviesCollection(String id) async {
-    return await _collectionMovies.doc(id).get().then((snapshot) {
+    return await _collectionMovies.doc(id).get().then((DocumentSnapshot<Object?> snapshot) {
       final Map<String, dynamic> response = snapshot.data() as Map<String, dynamic>;
       return Movies.fromMap(response);
     });

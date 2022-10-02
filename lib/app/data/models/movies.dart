@@ -1,4 +1,4 @@
-import 'dart:convert';
+import "dart:convert";
 
 List<Movies> moviesFromJson(String str) {
   return List<Movies>.from(jsonDecode(str).map((x) => Movies.fromMap(x)));
@@ -57,8 +57,8 @@ class Movies {
       "released_at": releasedAt,
       "created_at": createdAt,
       "deleted_at": deletedAt,
-      "categories": categories.map((e) => e).toList(),
-      "servers": servers.map((e) => e).toList(),
+      "categories": categories.map((String e) => e).toList(),
+      "servers": servers.map((String e) => e).toList(),
     };
   }
 }

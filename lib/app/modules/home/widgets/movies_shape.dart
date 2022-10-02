@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import "package:cached_network_image/cached_network_image.dart";
+import "package:flutter/material.dart";
 
-import '../../../config/constants/app_constant.dart';
-import '../../../config/themes/app_theme.dart';
-import '../../../data/models/movies.dart';
+import "../../../config/constants/app_constant.dart";
+import "../../../config/themes/app_theme.dart";
+import "../../../data/models/movies.dart";
 
 class MovieShape extends StatelessWidget {
   final Movies movie;
@@ -12,7 +12,7 @@ class MovieShape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double margin = 10;
+    const double margin = 10;
     return AnimatedContainer(
       duration: AppConstant.durationAnimation,
       curve: AppConstant.curve,

@@ -1,21 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:flutter/cupertino.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import '../../../config/functions/app_function.dart';
-import '../../../config/themes/app_theme.dart';
-import '../../../data/models/movies.dart';
-import '../../../shared/bounce_point.dart';
-import '../../../shared/empty_box.dart';
-import '../../../shared/radio_box.dart';
-import '../controllers/admin_controller.dart';
-import '../widgets/button_click.dart';
-import '../widgets/header_bar.dart';
-import '../widgets/icons_button.dart';
-import '../widgets/movies_shape.dart';
-import '../widgets/search_text.dart';
-import '../widgets/text_box.dart';
+import "../../../config/functions/app_function.dart";
+import "../../../config/themes/app_theme.dart";
+import "../../../data/models/movies.dart";
+import "../../../shared/bounce_point.dart";
+import "../../../shared/empty_box.dart";
+import "../../../shared/radio_box.dart";
+import "../controllers/admin_controller.dart";
+import "../widgets/button_click.dart";
+import "../widgets/header_bar.dart";
+import "../widgets/icons_button.dart";
+import "../widgets/movies_shape.dart";
+import "../widgets/search_text.dart";
+import "../widgets/text_box.dart";
 
 class AdminView extends StatefulWidget {
   const AdminView({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class AdminView extends StatefulWidget {
 
 class _AdminViewState extends State<AdminView> {
   final AdminController controller = Get.put(AdminController());
-  late Stream<QuerySnapshot> _stream = controller.getMovies;
+  late final Stream<QuerySnapshot> _stream = controller.getMovies;
   final TextEditingController description = TextEditingController();
 
   late int typeIndex = -1;
@@ -34,7 +34,7 @@ class _AdminViewState extends State<AdminView> {
   Widget build(BuildContext context) {
     return Material(
       color: AppTheme.backColor,
-      child: LayoutBuilder(builder: (context, constraints) {
+      child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
         late int crossAxisCount = 5;
         if (constraints.constrainWidth() < 600) {
           crossAxisCount = 1;
@@ -51,18 +51,18 @@ class _AdminViewState extends State<AdminView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Header(),
+              const Header(),
               Expanded(
                 child: ListView(
                   shrinkWrap: true,
                   children: [
                     ListTile(
-                      contentPadding: EdgeInsets.all(20),
+                      contentPadding: const EdgeInsets.all(20),
                       title: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                        children: const [
                           SizedBox(
                             width: 300,
                             child: SearchText(),
@@ -85,45 +85,45 @@ class _AdminViewState extends State<AdminView> {
                           SizedBox(
                             width: 500,
                             child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 25),
                               title: TextBox(
                                 controller: TextEditingController(),
                                 hintText: "Title",
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             width: 500,
                             child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 25),
                               title: TextBox(
                                 controller: description,
                                 maxLines: 10,
-                                hintText: 'Type a description...',
+                                hintText: "Type a description...",
                               ),
                             ),
                           ),
                           SizedBox(
                             width: 500,
                             child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 25),
                               title: TextBox(controller: TextEditingController(), hintText: "Type New Category"),
-                              trailing: IconsButton(icon: CupertinoIcons.plus),
+                              trailing: const IconsButton(icon: CupertinoIcons.plus),
                             ),
                           ),
                           SizedBox(
                             width: 500,
                             child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 25),
                               title: TextBox(controller: TextEditingController(), hintText: "Type New Server"),
-                              trailing: IconsButton(icon: CupertinoIcons.plus),
+                              trailing: const IconsButton(icon: CupertinoIcons.plus),
                             ),
                           ),
                           SizedBox(
                             width: 500,
                             child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 50),
-                              leading: Text(
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 50),
+                              leading: const Text(
                                 "Pick Type",
                                 style: TextStyle(
                                   color: AppTheme.textColor,
@@ -132,7 +132,7 @@ class _AdminViewState extends State<AdminView> {
                               ),
                               title: Row(
                                 children: [
-                                  Expanded(child: SizedBox(width: 1)),
+                                  const Expanded(child: SizedBox(width: 1)),
                                   RadioBox(
                                     state: typeIndex == 0,
                                     size: 25,
@@ -140,8 +140,8 @@ class _AdminViewState extends State<AdminView> {
                                       setState(() => {typeIndex = 0});
                                     },
                                   ),
-                                  SizedBox(width: 10),
-                                  Expanded(
+                                  const SizedBox(width: 10),
+                                  const Expanded(
                                     child: Text(
                                       "Movie",
                                       style: TextStyle(
@@ -150,7 +150,7 @@ class _AdminViewState extends State<AdminView> {
                                       ),
                                     ),
                                   ),
-                                  Expanded(child: SizedBox(width: 1)),
+                                  const Expanded(child: SizedBox(width: 1)),
                                   RadioBox(
                                     state: typeIndex == 1,
                                     size: 25,
@@ -158,8 +158,8 @@ class _AdminViewState extends State<AdminView> {
                                       setState(() => {typeIndex = 1});
                                     },
                                   ),
-                                  SizedBox(width: 10),
-                                  Expanded(
+                                  const SizedBox(width: 10),
+                                  const Expanded(
                                     child: Text(
                                       "Series",
                                       style: TextStyle(
@@ -168,7 +168,7 @@ class _AdminViewState extends State<AdminView> {
                                       ),
                                     ),
                                   ),
-                                  Expanded(child: SizedBox(width: 1)),
+                                  const Expanded(child: SizedBox(width: 1)),
                                 ],
                               ),
                             ),
@@ -176,7 +176,7 @@ class _AdminViewState extends State<AdminView> {
                           SizedBox(
                             width: 250,
                             child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 25),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 25),
                               title: ButtonClick(
                                 label: "Save",
                                 onPressed: () {
@@ -190,10 +190,10 @@ class _AdminViewState extends State<AdminView> {
                     ),
                     StreamBuilder<QuerySnapshot>(
                       stream: _stream,
-                      builder: (context, snapshot) {
+                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
                         switch (snapshot.connectionState) {
                           case ConnectionState.waiting:
-                            return Center(child: BouncePoint());
+                            return const Center(child: BouncePoint());
                           case ConnectionState.none:
                             return EmptyBox(label: snapshot.error.toString());
                           case ConnectionState.active:
@@ -203,12 +203,12 @@ class _AdminViewState extends State<AdminView> {
                               final int itemCount = snapshot.data!.docs.length * 10;
                               return GridView.builder(
                                 shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                padding: EdgeInsets.all(50),
+                                physics: const NeverScrollableScrollPhysics(),
+                                padding: const EdgeInsets.all(50),
                                 scrollDirection: Axis.vertical,
                                 gridDelegate: AppFunction.gridDelegate(crossAxisCount: crossAxisCount, spacing: 50, childAspectRatio: 0.75),
                                 itemCount: itemCount,
-                                itemBuilder: (_, i) {
+                                itemBuilder: (_, int i) {
                                   final Map<String, dynamic> data = snapshot.data!.docs[0].data() as Map<String, dynamic>;
                                   final Movies movie = Movies.fromMap(data);
                                   return MovieShape(movie: movie);
@@ -217,9 +217,9 @@ class _AdminViewState extends State<AdminView> {
                             }
                             return const EmptyBox();
                           case ConnectionState.done:
-                            return EmptyBox(label: "Done");
+                            return const EmptyBox(label: "Done");
                           default:
-                            return EmptyBox(label: "default");
+                            return const EmptyBox(label: "default");
                         }
                       },
                     ),

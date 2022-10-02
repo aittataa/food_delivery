@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+import "package:flutter/material.dart";
+import "package:iconly/iconly.dart";
 
-import '../../../config/messages/app_message.dart';
-import '../../../config/themes/app_theme.dart';
+import "../../../config/messages/app_message.dart";
+import "../../../config/themes/app_theme.dart";
 
 class FooterBar extends StatelessWidget {
   final int index;
@@ -23,10 +23,10 @@ class FooterBar extends StatelessWidget {
       backgroundColor: AppTheme.primaryBackColor,
       selectedItemColor: AppTheme.mainColor,
       unselectedItemColor: AppTheme.iconColor,
-      selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      items: [
+      items: const [
         BottomNavigationBarItem(
           label: AppMessage.labelHome,
           icon: Icon(IconlyBroken.home),

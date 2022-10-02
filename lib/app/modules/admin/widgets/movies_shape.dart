@@ -1,11 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+import "package:cached_network_image/cached_network_image.dart";
+import "package:flutter/material.dart";
+import "package:iconly/iconly.dart";
 
-import '../../../config/constants/app_constant.dart';
-import '../../../config/themes/app_theme.dart';
-import '../../../data/models/movies.dart';
-import '../../../shared/bounce_point.dart';
+import "../../../config/constants/app_constant.dart";
+import "../../../config/themes/app_theme.dart";
+import "../../../data/models/movies.dart";
+import "../../../shared/bounce_point.dart";
 
 class MovieShape extends StatelessWidget {
   final Movies movie;
@@ -15,7 +15,7 @@ class MovieShape extends StatelessWidget {
     return AnimatedContainer(
       duration: AppConstant.durationAnimation,
       curve: AppConstant.curve,
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: AppTheme.primaryBackColor,
         borderRadius: BorderRadius.circular(25),
@@ -26,8 +26,8 @@ class MovieShape extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: "${movie.photo}",
           fit: BoxFit.cover,
-          placeholder: (context, url) => BouncePoint(state: true, size: 25),
-          errorWidget: (context, url, error) => Icon(IconlyBold.danger, color: AppTheme.redColor),
+          placeholder: (BuildContext context, String url) => const BouncePoint(state: true, size: 25),
+          errorWidget: (BuildContext context, String url, error) => const Icon(IconlyBold.danger, color: AppTheme.redColor),
         ),
       ),
       // child: EmptyBox(label: "${movie.id}"),

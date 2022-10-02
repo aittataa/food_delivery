@@ -1,9 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:firebase_core/firebase_core.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import '../ignores/app_ignore.dart';
-import '../themes/app_theme.dart';
+import "../ignores/app_ignore.dart";
+import "../themes/app_theme.dart";
 
 class AppConstant {
   AppConstant._();
@@ -24,7 +24,7 @@ class AppConstant {
   /// TODO : Decoration
   static OutlineInputBorder inputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(25),
-    borderSide: BorderSide(width: 2.5, color: AppTheme.borderColor),
+    borderSide: const BorderSide(width: 2.5, color: AppTheme.borderColor),
   );
 
   static BoxDecoration decorationBox = BoxDecoration(
@@ -32,7 +32,7 @@ class AppConstant {
     gradient: mainGradient,
   );
 
-  static LinearGradient mainGradient = LinearGradient(
+  static LinearGradient mainGradient = const LinearGradient(
     colors: [AppTheme.mainColor, AppTheme.mainColor],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -44,7 +44,7 @@ class AppConstant {
     spreadRadius: .1,
   );
 
-  static FirebaseOptions options = FirebaseOptions(
+  static FirebaseOptions options = const FirebaseOptions(
     apiKey: AppIgnore.apiKey,
     appId: AppIgnore.appId,
     messagingSenderId: AppIgnore.messagingSenderId,

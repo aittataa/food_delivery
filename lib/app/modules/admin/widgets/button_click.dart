@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/themes/app_theme.dart';
+import "../../../config/themes/app_theme.dart";
 
 class ButtonClick extends StatelessWidget {
   final String label;
@@ -11,21 +11,19 @@ class ButtonClick extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: onPressed,
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppTheme.mainColor, backgroundColor: AppTheme.mainColor,
+        shadowColor: AppTheme.mainColor, disabledForegroundColor: AppTheme.mainColor.withOpacity(0.38),
+        padding: const EdgeInsets.all(25),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+      ),
       child: Text(
         label,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: AppTheme.primaryTextColor,
           fontWeight: FontWeight.bold,
         ),
-      ),
-      style: OutlinedButton.styleFrom(
-        backgroundColor: AppTheme.mainColor,
-        shadowColor: AppTheme.mainColor,
-        primary: AppTheme.mainColor,
-        onSurface: AppTheme.mainColor,
-        padding: EdgeInsets.all(25),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
       ),
     );
   }

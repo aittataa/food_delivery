@@ -1,0 +1,11 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+     avoid_print: true
+     always_specify_types: true
+     prefer_single_quotes: false
+     prefer_double_quotes: true
+     avoid_empty_else: true
+     avoid_relative_lib_imports: true
+     always_declare_return_types: true

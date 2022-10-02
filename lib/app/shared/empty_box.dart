@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../config/messages/app_message.dart';
-import '../config/themes/app_theme.dart';
+import "../config/messages/app_message.dart";
+import "../config/themes/app_theme.dart";
 
 class EmptyBox extends StatelessWidget {
   final String label;
@@ -10,7 +10,7 @@ class EmptyBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "$label",
+        label,
         style: TextStyle(
           color: AppTheme.mainColor.withOpacity(.25),
           fontWeight: FontWeight.bold,

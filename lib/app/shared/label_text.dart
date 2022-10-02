@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../config/constants/app_constant.dart';
-import '../config/themes/app_theme.dart';
+import "../config/constants/app_constant.dart";
+import "../config/themes/app_theme.dart";
 
 class LabelText extends StatelessWidget {
   final TextEditingController? controller;
@@ -19,7 +19,7 @@ class LabelText extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: validator,
-      style: TextStyle(
+      style: const TextStyle(
         color: AppTheme.textColor,
         fontWeight: FontWeight.bold,
         letterSpacing: .5,
@@ -32,7 +32,7 @@ class LabelText extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       scrollPadding: EdgeInsets.zero,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 5),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 5),
         border: AppConstant.inputBorder,
       ),
     );

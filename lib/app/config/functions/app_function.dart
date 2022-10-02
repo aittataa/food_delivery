@@ -1,32 +1,32 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:get/get.dart";
+import "package:intl/intl.dart";
 
-import '../themes/app_theme.dart';
+import "../themes/app_theme.dart";
 
 class AppFunction {
   AppFunction._();
 
-  static String dateShape(DateTime date) => DateFormat('MMM dd, yyyy - HH:mm').format(date);
+  static String dateShape(DateTime date) => DateFormat("MMM dd, yyyy - HH:mm").format(date);
 
-  static snackBar({required String title, required String message}) {
+  static SnackbarController snackBar({required String title, required String message}) {
     return Get.snackbar(
       "",
       "",
       backgroundColor: Colors.red.shade600,
-      margin: EdgeInsets.only(top: 25, right: 15, left: 15),
-      duration: Duration(milliseconds: 2500),
+      margin: const EdgeInsets.only(top: 25, right: 15, left: 15),
+      duration: const Duration(milliseconds: 2500),
       titleText: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: AppTheme.primaryTextColor,
           fontWeight: FontWeight.w900,
         ),
       ),
       messageText: Text(
         message,
-        style: TextStyle(
+        style: const TextStyle(
           color: AppTheme.primaryTextColor,
           fontWeight: FontWeight.bold,
         ),
@@ -34,7 +34,7 @@ class AppFunction {
     );
   }
 
-  static gridDelegate({int crossAxisCount = 1, double spacing = 10, double childAspectRatio = 1}) {
+  static SliverGridDelegateWithFixedCrossAxisCount gridDelegate({int crossAxisCount = 1, double spacing = 10, double childAspectRatio = 1}) {
     return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: crossAxisCount,
       mainAxisSpacing: spacing,
@@ -47,7 +47,7 @@ class AppFunction {
     //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     //SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: [SystemUiOverlay.top]);
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
         systemNavigationBarColor: AppTheme.transparentColor,
         systemNavigationBarDividerColor: AppTheme.transparentColor,
         systemNavigationBarIconBrightness: Brightness.dark,

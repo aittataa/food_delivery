@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import '../../categories/views/categories_view.dart';
-import '../../home/views/home_view.dart';
-import '../../search/views/search_view.dart';
-import '../../settings/views/settings_view.dart';
-import '../widgets/footer_bar.dart';
+import "package:flutter/material.dart";
+import "../../categories/views/categories_view.dart";
+import "../../home/views/home_view.dart";
+import "../../search/views/search_view.dart";
+import "../../settings/views/settings_view.dart";
+import "../widgets/footer_bar.dart";
 
 class InitialView extends StatefulWidget {
   const InitialView({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class _InitialViewState extends State<InitialView> {
       body: PageView(
         controller: _controller,
         children: [
-          HomeView(),
+          const HomeView(),
           SearchView(),
           CategoriesView(),
           SettingsView(),
@@ -35,7 +35,7 @@ class _InitialViewState extends State<InitialView> {
       ),
       bottomNavigationBar: FooterBar(
         index: _index,
-        onTap: (index) {
+        onTap: (int index) {
           setState(() => {_index = index});
           _controller.jumpToPage(_index);
         },

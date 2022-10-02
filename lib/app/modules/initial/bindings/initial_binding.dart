@@ -1,6 +1,6 @@
-import 'package:get/get.dart';
+import "package:get/get.dart";
 
-import '../controllers/initial_controller.dart';
+import "../controllers/initial_controller.dart";
 
 class InitialBinding extends Bindings {
   @override

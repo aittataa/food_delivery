@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/constants/app_constant.dart';
-import '../../../config/themes/app_theme.dart';
+import "../../../config/constants/app_constant.dart";
+import "../../../config/themes/app_theme.dart";
 
 class SearchText extends StatelessWidget {
   final TextEditingController? controller;
@@ -21,9 +21,9 @@ class SearchText extends StatelessWidget {
       scrollPadding: EdgeInsets.zero,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.zero,
-        prefixIcon: Icon(Icons.search, color: AppTheme.mainColor),
+        prefixIcon: const Icon(Icons.search, color: AppTheme.mainColor),
         hintText: "Search...",
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           color: AppTheme.textColor,
           fontWeight: FontWeight.bold,
         ),
